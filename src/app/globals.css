@@ -1,26 +1,306 @@
 @import "tailwindcss";
 
+/* ============================================================
+   WELLORA — Medical-Luxury system
+   Brand vision: champagne gold, slate black, soft ivory,
+   muted emerald (longevity), blush. Thin serif headlines +
+   modern sans body. Aesop x Four Seasons x longevity clinic.
+   Structure inspired by hims, aesthetic + interactivity our own.
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- TWO-COLOR SYSTEM: Plum (aubergine) + Blush. Women's health, high-end. ---
+     Token NAMES kept for compatibility; values remapped to the two-color family.
+     ivory and sand tokens = blush neutrals. ink = deep plum text.
+     gold tokens = plum accent/CTA on light, blush accent on dark.
+     emerald tokens = plum dark surfaces. */
+  --ivory:      #FFFEF8;   /* off-white base */
+  --ivory-2:    #FFFFFF;   /* pure white surface */
+  --ivory-card: #F8F7F0;   /* soft card */
+  --sand:       #F1F0E9;   /* deeper neutral band */
+  --ink:        #222222;   /* near-black — text/authority */
+  --ink-2:      #4A4A4A;
+  --muted:      rgba(34, 34, 34, 0.60);
+  --gold:       #222222;   /* accent = near-black (two-tone system) */
+  --gold-mid:   #323232;
+  --gold-soft:  #FFFEF8;   /* off-white accent on dark */
+  --emerald:    #222222;   /* dark surface */
+  --emerald-2:  #323232;
+  --emerald-deep:#141414;  /* deepest */
+  --sage:       #6A6A6A;
+  --blush:      #ECECEC;   /* neutral hover tint */
+  --line:       rgba(34,34,34,0.14);
+  --line-soft:  rgba(34,34,34,0.08);
+
+  --r: 22px;
+
+  --background: var(--ivory);
+  --foreground: var(--ink);
 }
 
 @theme inline {
+  --color-ivory: var(--ivory);
+  --color-ivory2: var(--ivory-2);
+  --color-ivoryCard: var(--ivory-card);
+  --color-sand: var(--sand);
+  --color-blush: var(--blush);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-goldMid: var(--gold-mid);
+  --color-goldSoft: var(--gold-soft);
+  --color-emerald: var(--emerald);
+  --color-emerald2: var(--emerald-2);
+  --color-emeraldDeep: var(--emerald-deep);
+  --color-sage: var(--sage);
+  --color-blush: var(--blush);
+
+  /* back-compat aliases (map old hims token names onto new brand palette) */
+  --color-cream: var(--ivory-2);
+  --color-cream2: var(--sand);
+  --color-clay: var(--gold);
+  --color-dark: var(--ink);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+
+  --font-display: var(--font-grotesk);
+  --font-grotesk: var(--font-grotesk);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif-mark);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-grotesk), Helvetica, Arial, sans-serif;
+  letter-spacing: -0.005em;
 }
+
+/* ---------- Typography ---------- */
+.display {
+  font-family: var(--font-grotesk), Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.032em;   /* tight neo-grotesque tracking */
+  line-height: 1.02;
+}
+/* italic accent no longer applies to a grotesque — keep upright, use tone instead */
+.display-i { font-style: normal; color: var(--muted); }
+.logo {
+  font-family: var(--font-serif-mark), Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.eyebrow {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.muted { color: var(--muted); }
+.gold-rule { width: 42px; height: 1px; background: var(--gold); display: inline-block; }
+
+/* ---------- Buttons (refined pills) ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  font-family: var(--font-grotesk), sans-serif;
+  font-size: 0.9rem; font-weight: 500; letter-spacing: 0.01em;
+  padding: 1rem 1.9rem; border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+  cursor: pointer; white-space: nowrap; line-height: 1;
+}
+.btn-ink, .btn-dark { background: var(--ink); color: var(--ivory); }
+.btn-ink:hover, .btn-dark:hover { background: var(--emerald); }
+.btn-gold    { background: var(--gold); color: #fff; }
+.btn-gold:hover { background: var(--gold-mid); }
+.btn-emerald { background: var(--emerald); color: var(--ivory); }
+.btn-emerald:hover { background: var(--emerald-2); }
+.btn-light   { background: #fff; color: var(--ink); }
+.btn-light:hover { background: #f1ece2; }
+.btn-outline-dark { background: transparent; color: var(--ink); border: 1.5px solid rgba(21,24,26,0.7); }
+.btn-outline-dark:hover { background: var(--ink); color: var(--ivory); }
+.btn-outline-light { background: transparent; color: var(--ivory); border: 1.5px solid rgba(247,243,235,0.5); }
+.btn-outline-light:hover { background: var(--ivory); color: var(--ink); }
+.btn-sm { padding: 0.6rem 1.15rem; font-size: 0.82rem; }
+
+.chev { transition: transform 0.25s ease; }
+.group:hover .chev { transform: translateX(4px); }
+
+/* ---------- Interactive ---------- */
+.tilt-scene { perspective: 1000px; }
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.22,1,0.36,1);
+  will-change: transform;
+}
+.magnetic { transition: transform 0.28s cubic-bezier(0.22,1,0.36,1); will-change: transform; }
+
+/* sheen sweep on hover */
+.sheen { position: relative; overflow: hidden; }
+.sheen::after {
+  content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-18deg); transition: left 0.7s ease; pointer-events: none;
+}
+.sheen:hover::after { left: 130%; }
+
+/* ---------- Reveal ---------- */
+.reveal { opacity: 0; transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ---------- Product float + shadow ---------- */
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.floaty { animation: floaty 6s ease-in-out infinite; }
+
+/* ---------- Journey path glowing nodes ---------- */
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50%      { transform: scale(1.7); opacity: 1; }
+}
+.pulse-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulseDot 2.6s ease-in-out infinite;
+}
+@keyframes dashFlow { to { stroke-dashoffset: -80; } }
+.dash-flow { animation: dashFlow 6s linear infinite; }
+.prod-shadow { filter: drop-shadow(0 26px 24px rgba(21,30,24,0.28)); }
+
+/* ---------- Textures ---------- */
+.marble {
+  background-color: var(--ivory);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 15% 0%, rgba(228,200,146,0.16), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 95% 100%, rgba(39,75,120,0.10), transparent 60%),
+    radial-gradient(circle at 60% 40%, rgba(255,255,255,0.5), transparent 70%);
+}
+.grain::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Custom range slider ---------- */
+.wellora-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+.wellora-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #FCFAF5;
+  border: 3px solid #E4C892;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  transition: transform 0.2s ease;
+}
+.wellora-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.wellora-range::-moz-range-thumb {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #FCFAF5;
+  border: 3px solid #E4C892;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+
+/* ---------- Press feedback (scale, transform-only) ---------- */
+.btn:active { transform: scale(0.97); }
+.press { transition: transform 0.18s cubic-bezier(0.22,1,0.36,1); }
+.press:active { transform: scale(0.985); }
+
+/* ---------- Orchestrated entrance (page load) ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise { opacity: 0; animation: rise 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* ---------- Cursor spotlight (signature ambient) ---------- */
+.spotlight { position: relative; }
+.spotlight-glow {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  opacity: 0; transition: opacity 0.5s ease;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 30%),
+    rgba(228, 200, 146, 0.16), transparent 62%);
+}
+.spotlight:hover .spotlight-glow { opacity: 1; }
+
+/* ---------- Reduced motion: honor user preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .rise { opacity: 1 !important; transform: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .floaty { animation: none !important; }
+  .spotlight-glow { display: none; }
+}
+
+/* ---------- Marquee (trust ticker + CTA band) ---------- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ---------- Cinematic hero: drifting ambient glows + letter reveal ---------- */
+@keyframes driftA {
+  0%,100% { transform: translate3d(0,0,0) scale(1); }
+  50%     { transform: translate3d(4%, -3%, 0) scale(1.08); }
+}
+@keyframes driftB {
+  0%,100% { transform: translate3d(0,0,0) scale(1); }
+  50%     { transform: translate3d(-5%, 4%, 0) scale(1.1); }
+}
+.drift-a { animation: driftA 18s ease-in-out infinite; }
+.drift-b { animation: driftB 22s ease-in-out infinite; }
+
+/* Floating meds: bob + gentle sway (composes on top of the parallax wrapper) */
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  30%      { transform: translateY(-14px) rotate(2.5deg); }
+  60%      { transform: translateY(8px) rotate(-2deg); }
+}
+.bob { animation: bob 7s ease-in-out infinite; will-change: transform; }
+
+@keyframes letterIn {
+  from { opacity: 0; transform: translateY(0.42em); filter: blur(8px); }
+  to   { opacity: 1; transform: translateY(0);      filter: blur(0); }
+}
+.letter {
+  display: inline-block;
+  opacity: 0;
+  animation: letterIn 0.62s cubic-bezier(0.22,1,0.36,1) forwards;
+  will-change: transform, opacity, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-a, .drift-b { animation: none !important; }
+  .letter { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
+::selection { background: var(--gold-soft); color: var(--ink); }

@@ -74,7 +74,7 @@ export default function MedicalSupport() {
                     className="w-8 h-8 rounded-full object-cover"
                   />
                   <span className="font-mono text-[0.62rem] uppercase tracking-wider text-ink-2">
-                    Inbox · Dr. E. Vaughn
+                    Inbox · Your care team
                   </span>
                 </div>
                 <p className="text-ink-2 text-[0.86rem] mt-3 leading-relaxed">
@@ -101,7 +101,7 @@ export default function MedicalSupport() {
                   <span className="text-ivory text-[0.74rem]">In transit</span>
                 </div>
                 <p className="font-mono text-[0.58rem] uppercase tracking-wider text-ivory/40 mt-2">
-                  Prescribed by Dr. E. Vaughn
+                  Prescribed by a licensed physician
                 </p>
               </div>
             </div>

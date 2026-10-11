@@ -28,9 +28,35 @@ const serif = Fraunces({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://wellaramd.com"),
   title: "WellaraMD — Women's Hormone & Longevity Medicine",
   description:
     "Physician-guided hormone, metabolic, and longevity care built for women. Perimenopause through menopause and beyond. Feel like yourself again.",
+  keywords: [
+    "hormone therapy",
+    "menopause",
+    "perimenopause",
+    "HRT for women",
+    "longevity medicine",
+    "metabolic health",
+    "telehealth",
+    "peptide therapy",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "https://wellaramd.com",
+    siteName: "WellaraMD",
+    title: "WellaraMD — Women's Hormone & Longevity Medicine",
+    description:
+      "Physician-guided hormone, metabolic, and longevity care built for women. Reviewed by licensed physicians, delivered to your door.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WellaraMD — Women's Hormone & Longevity Medicine",
+    description:
+      "Physician-guided hormone, metabolic, and longevity care built for women.",
+  },
 };
 
 export default function RootLayout({

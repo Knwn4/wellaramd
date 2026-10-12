@@ -1,15 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Product } from "./Visuals";
 
 const LINE = "Medicine that finally listens to women";
 
-type Vital = {
-  label: string;
-  value: string;
-  unit?: string;
-  dir: "up" | "down" | "steady";
-  note: string;
+type Floater = {
+  name: "vial" | "pen" | "dropper" | "capsules" | "labkit";
   pos: string;
   w: string;
   rot: number;
@@ -19,45 +16,23 @@ type Vital = {
   dim?: boolean; // background layer
 };
 
-/** Two layers of floating biomarker cards around the headline. */
-const VITALS: Vital[] = [
+/** Two layers of floating product renders around the headline. */
+const FLOATERS: Floater[] = [
   // foreground — large, sharp
-  { label: "Estradiol",     value: "82",     unit: "pg/mL",  dir: "up",   note: "in range",  pos: "left-[2%] top-[11%]",      w: "w-[150px] lg:w-[178px]", rot: -5, delay: 0,    depth: 26, dur: 7.5 },
-  { label: "Resting HR",    value: "58",     unit: "bpm",    dir: "down", note: "−6",         pos: "left-[9%] bottom-[9%]",    w: "w-[150px] lg:w-[176px]", rot: 4,  delay: 900,  depth: 34, dur: 8.5 },
-  { label: "HRV",           value: "74",     unit: "ms",     dir: "up",   note: "+12",        pos: "right-[3%] top-[9%]",      w: "w-[150px] lg:w-[178px]", rot: 5,  delay: 450,  depth: 30, dur: 6.8 },
-  { label: "Sleep score",   value: "91",     unit: "",       dir: "up",   note: "+8",         pos: "right-[9%] bottom-[11%]",  w: "w-[148px] lg:w-[172px]", rot: -4, delay: 1350, depth: 38, dur: 9 },
+  { name: "vial",     pos: "left-[3%] top-[11%]",      w: "w-[145px] lg:w-[185px]", rot: -14, delay: 0,    depth: 26, dur: 7.5 },
+  { name: "dropper",  pos: "left-[10%] bottom-[9%]",   w: "w-[130px] lg:w-[168px]", rot: 11,  delay: 900,  depth: 34, dur: 8.5 },
+  { name: "capsules", pos: "right-[4%] top-[9%]",      w: "w-[136px] lg:w-[176px]", rot: 13,  delay: 450,  depth: 30, dur: 6.8 },
+  { name: "pen",      pos: "right-[10%] bottom-[11%]", w: "w-[122px] lg:w-[156px]", rot: -9,  delay: 1350, depth: 38, dur: 9 },
   // mid-ground — smaller, dim
-  { label: "Progesterone",  value: "11",     unit: "ng/mL",  dir: "steady", note: "balanced", pos: "left-[9%] top-[26%]",     w: "w-[128px] lg:w-[150px]", rot: 3,  delay: 600,  depth: 12, dur: 6.2, dim: true },
-  { label: "Cortisol",      value: "12",     unit: "µg/dL",  dir: "down", note: "−22%",       pos: "right-[9%] top-[25%]",    w: "w-[128px] lg:w-[150px]", rot: -6, delay: 1800, depth: 14, dur: 7.8, dim: true },
-  { label: "Bio age",       value: "−4.2",   unit: "yrs",    dir: "down", note: "younger",    pos: "left-[29%] top-[3%]",     w: "w-[126px] lg:w-[146px]", rot: 6,  delay: 300,  depth: 16, dur: 8.2, dim: true },
-  { label: "VO₂ max",       value: "41",     unit: "",       dir: "up",   note: "+5",         pos: "right-[28%] bottom-[4%]", w: "w-[124px] lg:w-[144px]", rot: -5, delay: 2100, depth: 18, dur: 7.1, dim: true },
-  { label: "Vitamin D",     value: "48",     unit: "ng/mL",  dir: "up",   note: "optimal",    pos: "left-[0%] top-[48%]",     w: "w-[126px] lg:w-[148px]", rot: 5,  delay: 1200, depth: 22, dur: 8.8, dim: true },
-  { label: "Testosterone",  value: "34",     unit: "ng/dL",  dir: "up",   note: "restored",   pos: "right-[0%] top-[51%]",    w: "w-[126px] lg:w-[148px]", rot: -6, delay: 2400, depth: 20, dur: 6.6, dim: true },
-  { label: "Energy",        value: "+36%",   unit: "",       dir: "up",   note: "8 wks",      pos: "left-[22%] bottom-[5%]",  w: "w-[122px] lg:w-[142px]", rot: 4,  delay: 1650, depth: 15, dur: 7.4, dim: true },
-  { label: "Deep sleep",    value: "1h 48m", unit: "",       dir: "up",   note: "+31m",       pos: "right-[22%] top-[5%]",    w: "w-[122px] lg:w-[142px]", rot: -3, delay: 750,  depth: 17, dur: 8.1, dim: true },
+  { name: "labkit",   pos: "left-[19%] top-[39%]",     w: "w-[86px] lg:w-[112px]",  rot: 7,   delay: 600,  depth: 12, dur: 6.2, dim: true },
+  { name: "vial",     pos: "right-[19%] top-[37%]",    w: "w-[82px] lg:w-[106px]",  rot: -19, delay: 1800, depth: 14, dur: 7.8, dim: true },
+  { name: "capsules", pos: "left-[30%] top-[3%]",      w: "w-[78px] lg:w-[100px]",  rot: 23,  delay: 300,  depth: 16, dur: 8.2, dim: true },
+  { name: "dropper",  pos: "right-[29%] bottom-[4%]",  w: "w-[80px] lg:w-[104px]",  rot: -17, delay: 2100, depth: 18, dur: 7.1, dim: true },
+  { name: "pen",      pos: "left-[1%] top-[49%]",      w: "w-[96px] lg:w-[124px]",  rot: 19,  delay: 1200, depth: 22, dur: 8.8, dim: true },
+  { name: "capsules", pos: "right-[1%] top-[52%]",     w: "w-[92px] lg:w-[118px]",  rot: -22, delay: 2400, depth: 20, dur: 6.6, dim: true },
+  { name: "vial",     pos: "left-[23%] bottom-[5%]",   w: "w-[76px] lg:w-[98px]",   rot: 15,  delay: 1650, depth: 15, dur: 7.4, dim: true },
+  { name: "labkit",   pos: "right-[23%] top-[5%]",     w: "w-[74px] lg:w-[96px]",   rot: -12, delay: 750,  depth: 17, dur: 8.1, dim: true },
 ];
-
-const GOOD = "#4a7c59"; // muted sage for positive movement
-
-function VitalCard({ v }: { v: Vital }) {
-  const arrow = v.dir === "up" ? "↑" : v.dir === "down" ? "↓" : "•";
-  return (
-    <div className="rounded-2xl bg-white/85 backdrop-blur-sm border border-[var(--line-soft)] shadow-[0_18px_44px_-26px_rgba(20,20,20,0.5)] px-3.5 py-3">
-      <div className="eyebrow text-ink-2/70 text-[0.55rem]">{v.label}</div>
-      <div className="flex items-baseline gap-1 mt-1.5">
-        <span className="display text-ink text-[1.45rem] leading-none">{v.value}</span>
-        {v.unit && <span className="muted text-[0.58rem]">{v.unit}</span>}
-      </div>
-      <div
-        className="mt-2 flex items-center gap-1 font-mono text-[0.55rem] uppercase tracking-wide"
-        style={{ color: v.dir === "steady" ? "rgba(74,74,74,0.6)" : GOOD }}
-      >
-        <span aria-hidden>{arrow}</span>
-        {v.note}
-      </div>
-    </div>
-  );
-}
 
 export default function GLHero() {
   const words = LINE.split(" ");
@@ -92,24 +67,25 @@ export default function GLHero() {
       {/* drifting ambient glows */}
       <div className="drift-a absolute -left-[12%] top-[8%] w-[48%] h-[58%] rounded-full blur-3xl opacity-60 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(34,34,34,0.06), transparent 70%)" }} aria-hidden />
       <div className="drift-b absolute -right-[10%] bottom-[4%] w-[46%] h-[54%] rounded-full blur-3xl opacity-60 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(34,34,34,0.05), transparent 70%)" }} aria-hidden />
-      <div className="drift-a absolute left-[38%] top-[34%] w-[30%] h-[36%] rounded-full blur-3xl opacity-40 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(74,124,89,0.06), transparent 70%)", animationDelay: "6s" }} aria-hidden />
+      <div className="drift-a absolute left-[38%] top-[34%] w-[30%] h-[36%] rounded-full blur-3xl opacity-40 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(122,61,100,0.05), transparent 70%)", animationDelay: "6s" }} aria-hidden />
 
-      {/* Floating vitals field */}
+      {/* Floating meds field */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        {VITALS.map((v, i) => (
+        {FLOATERS.map((f, i) => (
           <div
             key={i}
-            className={`absolute ${v.pos} ${v.w} hidden sm:block`}
+            className={`absolute ${f.pos} ${f.w} hidden sm:block`}
             style={{
-              transform: `translate3d(${pointer.x * v.depth}px, ${pointer.y * v.depth}px, 0)`,
+              transform: `translate3d(${pointer.x * f.depth}px, ${pointer.y * f.depth}px, 0)`,
               transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1)",
-              opacity: v.dim ? 0.9 : 1,
+              opacity: f.dim ? 0.85 : 1,
+              filter: f.dim ? "blur(0.3px)" : "none",
             }}
           >
             {/* base rotation, then bob/sway on top */}
-            <div style={{ transform: `rotate(${v.rot}deg)` }}>
-              <div className="bob" style={{ animationDuration: `${v.dur}s`, animationDelay: `${v.delay}ms` }}>
-                <VitalCard v={v} />
+            <div style={{ transform: `rotate(${f.rot}deg)` }}>
+              <div className="bob" style={{ animationDuration: `${f.dur}s`, animationDelay: `${f.delay}ms` }}>
+                <Product name={f.name} float={false} className="w-full h-auto object-contain" />
               </div>
             </div>
           </div>

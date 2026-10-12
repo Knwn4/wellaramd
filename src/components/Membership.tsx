@@ -66,7 +66,7 @@ const TIERS: Tier[] = [
 
 export default function Membership() {
   return (
-    <section id="membership" className="bg-ivory py-20 lg:py-28">
+    <section id="membership" className="bg-ivory py-14 lg:py-28">
       <div className="mx-auto max-w-[1240px] px-5 lg:px-8">
         <Reveal className="text-center max-w-2xl mx-auto">
           <span className="eyebrow text-gold">Membership</span>

@@ -25,7 +25,7 @@ const PROPS = [
 
 export default function ValueProps() {
   return (
-    <section className="bg-ivory py-16 lg:py-24 border-t border-[var(--line-soft)]">
+    <section className="bg-ivory py-12 lg:py-24 border-t border-[var(--line-soft)]">
       <div className="mx-auto max-w-[1440px] px-5 lg:px-8">
         {/* Top: copy + supporting image */}
         <div className="grid lg:grid-cols-[1fr_0.85fr] gap-10 lg:gap-16 items-center">

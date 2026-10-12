@@ -31,7 +31,7 @@ export default function Blueprint() {
     >
       <Spotlight
         radius={520}
-        className="mx-auto max-w-[1440px] rounded-[var(--r)] grain overflow-hidden px-6 lg:px-16 py-16 lg:py-24"
+        className="mx-auto max-w-[1440px] rounded-[var(--r)] grain overflow-hidden px-6 lg:px-16 py-12 lg:py-24"
         style={{ background: "radial-gradient(130% 110% at 15% 0%, #323232, #141414 78%)" }}
       >
         {/* botanical accent */}

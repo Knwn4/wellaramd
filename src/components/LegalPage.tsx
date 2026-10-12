@@ -31,7 +31,7 @@ export default function LegalPage({
       </header>
 
       <main className="bg-ivory">
-        <div className="mx-auto max-w-[820px] px-5 lg:px-8 py-16 lg:py-24">
+        <div className="mx-auto max-w-[820px] px-5 lg:px-8 py-12 lg:py-24">
           <span className="eyebrow text-ink-2">Legal</span>
           <h1 className="display text-ink text-[2.6rem] lg:text-[3.4rem] leading-[1.04] mt-3">
             {title}

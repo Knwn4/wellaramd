@@ -8,7 +8,7 @@ const COLUMNS: { title: string; links: string[] }[] = [
 export default function Footer() {
   return (
     <footer className="bg-dark text-white overflow-hidden">
-      <div className="mx-auto max-w-[1440px] px-5 lg:px-8 pt-20 pb-8">
+      <div className="mx-auto max-w-[1440px] px-5 lg:px-8 pt-14 lg:pt-20 pb-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
           {COLUMNS.map((c) => (
             <div key={c.title}>

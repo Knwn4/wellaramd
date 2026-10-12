@@ -29,7 +29,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-ivory py-20 lg:py-28 border-t border-[var(--line-soft)]">
+    <section id="faq" className="bg-ivory py-14 lg:py-28 border-t border-[var(--line-soft)]">
       <div className="mx-auto max-w-[1440px] px-5 lg:px-8 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16">
         <div>
           <h2 className="display text-ink text-[2.4rem] lg:text-[3.4rem] leading-[1.02]">

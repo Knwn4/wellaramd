@@ -95,7 +95,7 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
   const visible = expanded ? filtered : filtered.slice(0, PAGE);
 
   return (
-    <section id="treatments" className="bg-ivory py-20 lg:py-28 border-t border-[var(--line-soft)]">
+    <section id="treatments" className="bg-ivory py-14 lg:py-28 border-t border-[var(--line-soft)]">
       <div className="mx-auto max-w-[1440px] px-5 lg:px-8">
         {/* Header — headline left, filters right on desktop */}
         <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-end mb-10">

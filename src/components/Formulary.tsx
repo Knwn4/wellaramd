@@ -6,7 +6,7 @@ export default async function Formulary() {
   const groups = groupByCategory(treatments);
 
   return (
-    <section id="treatments" className="bg-ivory py-20 lg:py-28">
+    <section id="treatments" className="bg-ivory py-14 lg:py-28">
       <div className="mx-auto max-w-[1240px] px-5 lg:px-8">
         <Reveal className="max-w-2xl">
           <span className="eyebrow text-gold">The Complete Formulary</span>

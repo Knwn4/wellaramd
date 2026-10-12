@@ -2,7 +2,7 @@ const REPEAT = Array.from({ length: 8 });
 
 export default function BigCTA() {
   return (
-    <section id="evaluation" className="bg-ivory pt-20 lg:pt-28">
+    <section id="evaluation" className="bg-ivory pt-14 lg:pt-28">
       <div className="mx-auto max-w-[1440px] px-5 lg:px-8 text-center">
         <span className="eyebrow text-ink-2">Ready to begin?</span>
         <h2 className="display text-ink text-[2.6rem] sm:text-[3.6rem] lg:text-[4.6rem] leading-[1.02] mt-4 max-w-[18ch] mx-auto">

@@ -9,7 +9,7 @@ const ADDRESSED = [
 
 export default function WomensHormones() {
   return (
-    <section id="womens-health" className="bg-sand py-20 lg:py-28 overflow-hidden">
+    <section id="womens-health" className="bg-sand py-14 lg:py-28 overflow-hidden">
       <div className="mx-auto max-w-[1240px] px-5 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Copy */}

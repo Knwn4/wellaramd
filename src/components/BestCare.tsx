@@ -4,7 +4,7 @@ export default function BestCare() {
   return (
     <section
       id="physicians"
-      className="relative overflow-hidden py-20 lg:py-28"
+      className="relative overflow-hidden py-14 lg:py-28"
       style={{ background: "linear-gradient(180deg, #F6F4EA 0%, #FFFEF8 100%)" }}
     >
       <div className="mx-auto max-w-[1440px] px-5 lg:px-8">

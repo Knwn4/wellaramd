@@ -43,7 +43,7 @@ export default async function Breakthrough() {
     <section className="bg-ivory px-3 lg:px-5 pt-6">
       <Spotlight
         radius={460}
-        className="mx-auto max-w-[1440px] rounded-[var(--r)] grain overflow-hidden px-6 lg:px-16 py-16 lg:py-24"
+        className="mx-auto max-w-[1440px] rounded-[var(--r)] grain overflow-hidden px-6 lg:px-16 py-12 lg:py-24"
         style={{ background: "linear-gradient(165deg, #202528 0%, #131618 92%)" }}
       >
         <div className="relative z-10">

@@ -32,16 +32,16 @@ export default function MedicalSupport() {
 
           {/* Figure + floating UI */}
           <Reveal delay={120}>
-            <div className="relative min-h-[520px] lg:min-h-[660px] flex items-end justify-center">
+            <div className="relative flex flex-col items-center gap-4 lg:min-h-[660px] lg:flex-row lg:items-end lg:justify-center lg:gap-0">
               <img
                 src="/lifestyle/figure.png"
                 alt=""
                 aria-hidden
-                className="relative z-10 h-[500px] lg:h-[640px] w-auto object-contain"
+                className="relative z-10 h-[320px] sm:h-[420px] lg:h-[640px] w-auto object-contain"
               />
 
-              {/* Plan card — top right */}
-              <div className="absolute z-20 right-0 lg:right-4 top-4 lg:top-10 w-[210px] rounded-2xl border border-[var(--line)] bg-white/70 backdrop-blur-md shadow-[0_24px_48px_-28px_rgba(34,34,34,0.35)] p-4">
+              {/* Plan card — top right on desktop, stacked on mobile */}
+              <div className="relative w-full max-w-[340px] lg:absolute lg:z-20 lg:right-4 lg:top-10 lg:w-[210px] rounded-2xl border border-[var(--line)] bg-white/70 backdrop-blur-md shadow-[0_24px_48px_-28px_rgba(34,34,34,0.35)] p-4">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[0.6rem] uppercase tracking-wider text-ink-2 border border-[var(--line)] rounded px-1.5 py-0.5">
                     Your plan
@@ -65,8 +65,8 @@ export default function MedicalSupport() {
                 </div>
               </div>
 
-              {/* Physician message — bottom left */}
-              <div className="absolute z-20 left-0 bottom-16 lg:bottom-24 w-[290px] rounded-2xl border border-[var(--line)] bg-white/75 backdrop-blur-md shadow-[0_24px_48px_-28px_rgba(34,34,34,0.35)] p-4">
+              {/* Physician message — bottom left on desktop, stacked on mobile */}
+              <div className="relative w-full max-w-[340px] lg:absolute lg:z-20 lg:left-0 lg:bottom-24 lg:w-[290px] rounded-2xl border border-[var(--line)] bg-white/75 backdrop-blur-md shadow-[0_24px_48px_-28px_rgba(34,34,34,0.35)] p-4">
                 <div className="flex items-center gap-2.5">
                   <img
                     src="/lifestyle/physician.jpg"
@@ -83,8 +83,8 @@ export default function MedicalSupport() {
                 </p>
               </div>
 
-              {/* Prescription status — bottom right */}
-              <div className="absolute z-20 right-0 bottom-2 lg:bottom-6 w-[250px] rounded-2xl border border-[var(--line)] bg-ink text-ivory shadow-[0_28px_56px_-30px_rgba(34,34,34,0.6)] p-4">
+              {/* Prescription status — bottom right on desktop, stacked on mobile */}
+              <div className="relative w-full max-w-[340px] lg:absolute lg:z-20 lg:right-0 lg:bottom-6 lg:w-[250px] rounded-2xl border border-[var(--line)] bg-ink text-ivory shadow-[0_28px_56px_-30px_rgba(34,34,34,0.6)] p-4">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-14 flex items-center justify-center shrink-0">
                     <Product name="vial" float={false} className="h-full w-full object-contain" />

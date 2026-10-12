@@ -32,16 +32,16 @@ export default function BestCare() {
 
           {/* Figure + floating credential cards */}
           <Reveal delay={120} className="order-2 lg:order-1">
-            <div className="relative min-h-[520px] lg:min-h-[660px] flex items-end justify-center">
+            <div className="relative flex flex-col items-center gap-4 lg:min-h-[660px] lg:flex-row lg:items-end lg:justify-center lg:gap-0">
               <img
                 src="/lifestyle/physician-cut.png"
                 alt=""
                 aria-hidden
-                className="relative z-10 h-[480px] lg:h-[620px] w-auto object-contain"
+                className="relative z-10 h-[320px] sm:h-[420px] lg:h-[620px] w-auto object-contain"
               />
 
-              {/* Board certified — top left */}
-              <div className="absolute z-20 left-0 top-6 lg:top-12 w-[220px] rounded-2xl border border-[var(--line)] bg-white/75 backdrop-blur-md shadow-[0_24px_48px_-28px_rgba(34,34,34,0.35)] p-4">
+              {/* Board certified — top left on desktop, stacked on mobile */}
+              <div className="relative w-full max-w-[340px] lg:absolute lg:z-20 lg:left-0 lg:top-12 lg:w-[220px] rounded-2xl border border-[var(--line)] bg-white/75 backdrop-blur-md shadow-[0_24px_48px_-28px_rgba(34,34,34,0.35)] p-4">
                 <div className="flex items-center gap-2.5">
                   <span className="w-8 h-8 rounded-full bg-ink/[0.06] flex items-center justify-center text-ink">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
@@ -56,15 +56,15 @@ export default function BestCare() {
                 </div>
               </div>
 
-              {/* Experience stat — mid right */}
-              <div className="absolute z-20 right-0 top-[36%] w-[190px] rounded-2xl border border-[var(--line)] bg-white/75 backdrop-blur-md shadow-[0_24px_48px_-28px_rgba(34,34,34,0.35)] p-4">
+              {/* Experience stat — mid right on desktop, stacked on mobile */}
+              <div className="relative w-full max-w-[340px] lg:absolute lg:z-20 lg:right-0 lg:top-[36%] lg:w-[190px] rounded-2xl border border-[var(--line)] bg-white/75 backdrop-blur-md shadow-[0_24px_48px_-28px_rgba(34,34,34,0.35)] p-4">
                 <p className="eyebrow text-ink-2/70">Experience</p>
                 <p className="display text-ink text-[2rem] mt-1.5 leading-none">15+ yrs</p>
                 <p className="muted text-[0.76rem] mt-1">average, per physician</p>
               </div>
 
-              {/* Name card — bottom, dark (mirrors the prescription card below) */}
-              <div className="absolute z-20 left-2 bottom-2 lg:bottom-6 w-[250px] rounded-2xl border border-[var(--line)] bg-ink text-ivory shadow-[0_28px_56px_-30px_rgba(34,34,34,0.6)] p-4">
+              {/* Name card — bottom on desktop, stacked on mobile */}
+              <div className="relative w-full max-w-[340px] lg:absolute lg:z-20 lg:left-2 lg:bottom-6 lg:w-[250px] rounded-2xl border border-[var(--line)] bg-ink text-ivory shadow-[0_28px_56px_-30px_rgba(34,34,34,0.6)] p-4">
                 <p className="display text-ivory text-[1.35rem] leading-tight">
                   Your care team
                 </p>

@@ -19,7 +19,7 @@ export default function GuideCapture() {
                 The Longevity Guide to Peptides
               </h2>
               <p className="mt-4 text-white/75 text-[1rem]">
-                Written by board certified physicians to support your journey.
+                Written by licensed medical providers to support your journey.
               </p>
 
               <form className="mt-8" action="#">

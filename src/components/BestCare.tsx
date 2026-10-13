@@ -20,12 +20,12 @@ export default function BestCare() {
             <div className="mt-8 pt-6 border-t border-[var(--line)] max-w-md">
               <p className="eyebrow text-ink-2">Physician led, never a call center</p>
               <p className="muted text-[1rem] mt-4 leading-relaxed">
-                Behind every detail is a team of longevity-trained physicians whose
-                protocols are grounded in current clinical evidence — and who keep
-                adjusting them as your body evolves.
+                Behind every detail is a network of licensed, US-based providers who
+                review your intake, prescribe only what is appropriate for you, and
+                keep adjusting as your body changes.
               </p>
               <a href="#evaluation" className="btn btn-ink mt-8">
-                Meet your physician
+                Start your evaluation
               </a>
             </div>
           </Reveal>
@@ -50,17 +50,17 @@ export default function BestCare() {
                     </svg>
                   </span>
                   <div className="leading-tight">
-                    <div className="text-ink text-[0.9rem] font-medium">Board certified</div>
-                    <div className="muted text-[0.74rem]">Longevity medicine</div>
+                    <div className="text-ink text-[0.9rem] font-medium">Licensed providers</div>
+                    <div className="muted text-[0.74rem]">US-based network</div>
                   </div>
                 </div>
               </div>
 
               {/* Experience stat — mid right on desktop, stacked on mobile */}
               <div className="relative w-full max-w-[340px] lg:absolute lg:z-20 lg:right-0 lg:top-[36%] lg:w-[190px] rounded-2xl border border-[var(--line)] bg-white/75 backdrop-blur-md shadow-[0_24px_48px_-28px_rgba(34,34,34,0.35)] p-4">
-                <p className="eyebrow text-ink-2/70">Experience</p>
-                <p className="display text-ink text-[2rem] mt-1.5 leading-none">15+ yrs</p>
-                <p className="muted text-[0.76rem] mt-1">average, per physician</p>
+                <p className="eyebrow text-ink-2/70">Online care</p>
+                <p className="display text-ink text-[2rem] mt-1.5 leading-none">100%</p>
+                <p className="muted text-[0.76rem] mt-1">no clinic visits</p>
               </div>
 
               {/* Name card — bottom on desktop, stacked on mobile */}
@@ -69,7 +69,7 @@ export default function BestCare() {
                   Your care team
                 </p>
                 <p className="font-mono text-[0.6rem] uppercase tracking-wider text-ivory/55 mt-1.5">
-                  Licensed &amp; longevity-trained
+                  Licensed, US-based providers
                 </p>
                 <div className="mt-3 pt-3 border-t border-white/15 flex items-center justify-between">
                   <span className="text-ivory/60 text-[0.74rem]">1:1 guidance</span>

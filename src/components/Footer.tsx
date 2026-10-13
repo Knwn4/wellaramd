@@ -1,22 +1,50 @@
-const COLUMNS: { title: string; links: string[] }[] = [
-  { title: "Treatments", links: ["Peptide Therapy", "Hormone Optimization", "Metabolic Reset", "Longevity Blueprint", "Testosterone"] },
-  { title: "Company", links: ["About WellaraMD", "Our Physicians", "Careers", "Press", "Investors"] },
-  { title: "Tools", links: ["Biomarker Panel", "Longevity Score", "Metabolic Calculator", "Hormone Quiz"] },
-  { title: "Support", links: ["Member Login", "Help Center", "FAQs", "Billing", "Contact"] },
+const MYDOSE_LOGIN = "https://app.mydose.ai/";
+
+const COLUMNS: { title: string; links: { label: string; href: string; external?: boolean }[] }[] = [
+  {
+    title: "Treatments",
+    links: [
+      { label: "Browse all", href: "#treatments" },
+      { label: "Weight & metabolic", href: "#treatments" },
+      { label: "Hormone & longevity", href: "#treatments" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "How it works", href: "#how-it-works" },
+      { label: "Our providers", href: "#physicians" },
+      { label: "FAQs", href: "#faq" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { label: "Log in", href: MYDOSE_LOGIN, external: true },
+      { label: "Start your evaluation", href: "#evaluation" },
+      { label: "Contact", href: "mailto:support@wellaramd.com" },
+    ],
+  },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-dark text-white overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-5 lg:px-8 pt-14 lg:pt-20 pb-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-10">
           {COLUMNS.map((c) => (
             <div key={c.title}>
               <div className="text-[0.72rem] uppercase tracking-[0.14em] text-white/45 mb-5">{c.title}</div>
               <ul className="space-y-3.5">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="text-white/80 hover:text-white text-[0.98rem] transition-colors">{l}</a>
+                  <li key={l.label}>
+                    <a
+                      href={l.href}
+                      {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className="text-white/80 hover:text-white text-[0.98rem] transition-colors"
+                    >
+                      {l.label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -24,15 +52,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 flex flex-wrap items-center gap-4">
-          {["f", "X", "○", "d"].map((s, i) => (
-            <a key={i} href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 transition-colors">
-              {s}
-            </a>
-          ))}
-        </div>
-
-        <div className="mt-10 pt-8 border-t border-white/10">
+        <div className="mt-16 pt-8 border-t border-white/10">
           <p className="text-white/40 text-[0.76rem] leading-relaxed max-w-4xl">
             WellaraMD connects patients with independent, licensed healthcare
             providers and US-licensed pharmacies. The information on this site is
@@ -53,8 +73,10 @@ export default function Footer() {
             <a href="/" className="hover:text-white">Home</a>
           </div>
           <p className="mt-6 text-white/40 text-[0.78rem]">
-            © {new Date().getFullYear()} WellaraMD Medical Group, Inc. All rights reserved.
+            © {new Date().getFullYear()} WellaraMD. All rights reserved.
           </p>
+          {/* TODO (LegitScript): replace with exact registered legal entity name,
+              and add physical business address + phone once provided by client. */}
         </div>
       </div>
 

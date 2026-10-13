@@ -105,30 +105,34 @@ const F = {
  */
 export const STATIC_CATALOG: Treatment[] = [
   // ── Peptides, hormones & longevity (MyDose packages) ──────────────────
-  t("glow", "GLOW Injection", ["recovery"], [{ form: "Injectable", priceMonthly: 249 }], F.peptide,
-    "https://app.mydose.ai/patient/book-consultation/8d41e6df-cb33-4498-900a-3ca09fc6d7e0?location_id=loc_70c3de9e-f419-4021-bf4f-5cc664fc0ad3&overrideId=51d0ec0f-7587-4521-98eb-a75938f76d96"),
   np("glutathione-inj", "Glutathione Injectable", ["immunity", "longevity"], 349, ["Injectable"], BOOK.glutathione),
   t("nad", "NAD+ Injectable", ["longevity", "energy", "recovery", "focus"], [{ form: "Injectable", priceMonthly: 262.5 }], F.antiAging, BOOK.nadStk),
   np("finasteride", "Finasteride", ["hormones-men", "longevity"], 99, ["Oral"], BOOK.finasteride),
   np("methylcobalamin-b12", "Methylcobalamin B12", ["energy", "longevity"], 165, ["Injectable"], BOOK.b12),
-  np("mots-c", "MOTS-C", ["weight-loss", "energy", "performance"], 475, ["Injectable"], BOOK.motsc),
-  np("bpc-157", "BPC-157", ["recovery", "gut-health"], 275, ["Injectable"], BOOK.bpc157),
   t("tesamorelin", "Tesamorelin", ["longevity", "recovery", "performance"], [{ form: "Injectable", priceMonthly: 450 }], F.tesamorelin, BOOK.tesamorelin),
   t("sermorelin", "Sermorelin", ["longevity", "recovery", "performance"], [{ form: "Injectable", priceMonthly: 300 }], F.sermorelin, BOOK.sermorelinStk),
   np("pt-141", "PT-141", ["sexual-health"], 200, ["Injectable"], BOOK.pt141),
-  np("cjc-ipamorelin", "CJC-1295 + Ipamorelin", ["gut-health", "sleep", "recovery", "longevity"], 275, ["Injectable"], BOOK.cjcIpa),
-  np("wolverine", "Wolverine Injection", ["recovery"], 249, ["Injectable"], BOOK.wolverine),
   t("enclomiphene", "Enclomiphene", ["hormones-men"], [{ form: "Oral", priceMonthly: 199 }], F.enclomiphene, BOOK.enclomiphene),
-  t("ghk-cu", "GHK-Cu", ["longevity"], [{ form: "Injectable", priceMonthly: 229 }], F.peptide, BOOK.ghkCu),
 
   // ── Weight & metabolic (MyDose packages) ──────────────────────────────
   t("semaglutide-b12", "Semaglutide + B12", ["weight-loss"], [{ form: "Injectable", priceMonthly: 300 }], F.semaglutide, BOOK.semaB12),
   t("tirzepatide-b12", "Tirzepatide + B12", ["weight-loss"], [{ form: "Injectable", priceMonthly: 249 }], F.tirzepatide, BOOK.tirzB12),
   np("tirzepatide-microdose", "Tirzepatide Microdosing", ["weight-loss"], 249, ["Sublingual"], BOOK.tirzMicro),
-  np("retatrutide", "Retatrutide", ["weight-loss"], 450, ["Injectable"], BOOK.retatrutide),
   np("semaglutide-b6", "Semaglutide + B6", ["weight-loss"], 350, ["Injectable"], BOOK.semaB6),
   np("tirzepatide-b6", "Tirzepatide + B6", ["weight-loss"], 249, ["Injectable"], BOOK.tirzB6),
   np("tirzepatide-ondansetron", "Tirzepatide + Ondansetron ODT", ["weight-loss"], 189, ["ODT"], BOOK.tirzOnd),
   np("semaglutide-ondansetron", "Semaglutide + Ondansetron ODT", ["weight-loss"], 149, ["ODT"], BOOK.semaOnd),
   np("tirzepatide-b12-microdose", "Tirzepatide + B12 Microdose", ["weight-loss"], 199, ["Injectable"], BOOK.tirzB12Micro),
+
+  // ── REMOVED for LegitScript application (Oct 2026) ─────────────────────
+  // Flagged as non-compliant: Retatrutide (investigational, not FDA-approved),
+  // and FDA-flagged peptides / blends. Re-add if MyDose pharmacy confirms
+  // compliant status. BOOK links preserved above.
+  //   t("glow", "GLOW Injection", ["recovery"], [{ form: "Injectable", priceMonthly: 249 }], F.peptide, BOOK.glow-was-inline),
+  //   np("ghk-cu", "GHK-Cu", ["longevity"], 229, ["Injectable"], BOOK.ghkCu),
+  //   np("mots-c", "MOTS-C", ["weight-loss","energy","performance"], 475, ["Injectable"], BOOK.motsc),
+  //   np("bpc-157", "BPC-157", ["recovery","gut-health"], 275, ["Injectable"], BOOK.bpc157),
+  //   np("cjc-ipamorelin", "CJC-1295 + Ipamorelin", ["gut-health","sleep","recovery","longevity"], 275, ["Injectable"], BOOK.cjcIpa),
+  //   np("wolverine", "Wolverine Injection", ["recovery"], 249, ["Injectable"], BOOK.wolverine),
+  //   np("retatrutide", "Retatrutide", ["weight-loss"], 450, ["Injectable"], BOOK.retatrutide),
 ];

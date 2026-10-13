@@ -1,6 +1,6 @@
 const CLAIMS = [
   "100% online process",
-  "Board-certified physicians",
+  "US-licensed providers",
   "US-based licensed pharmacies",
   "Transparent pricing, no hidden fees",
   "Physician-reviewed protocols",

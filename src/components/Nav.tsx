@@ -65,20 +65,31 @@ export default function Nav() {
             open ? "max-h-[520px]" : "max-h-0"
           }`}
         >
-          <div className="mx-auto max-w-[1440px] px-5 lg:px-8 py-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="mx-auto max-w-[1440px] px-5 lg:px-8 py-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { h: "Peptides", items: ["Peptide Optimization", "Recovery & Repair", "Growth Hormone Support"] },
-              { h: "Hormones", items: ["Testosterone", "Hormone Balance", "Thyroid Support"] },
-              { h: "Longevity", items: ["Longevity Blueprint", "Biomarker Panel", "Metabolic Reset"] },
-              { h: "WellaraMD", items: ["How it works", "Our Physicians", "Membership", "Reviews"] },
+              { h: "Treatments", items: [
+                { l: "Browse all", href: "#treatments" },
+                { l: "Weight & metabolic", href: "#treatments" },
+                { l: "Hormone & longevity", href: "#treatments" },
+              ] },
+              { h: "How it works", items: [
+                { l: "The process", href: "#how-it-works" },
+                { l: "Labs", href: "#labs" },
+                { l: "FAQs", href: "#faq" },
+              ] },
+              { h: "Company", items: [
+                { l: "Our providers", href: "#physicians" },
+                { l: "Start your evaluation", href: "#evaluation" },
+                { l: "Contact", href: "mailto:support@wellaramd.com" },
+              ] },
             ].map((col) => (
               <div key={col.h}>
                 <div className="text-[0.72rem] uppercase tracking-[0.14em] muted mb-4">{col.h}</div>
                 <ul className="space-y-3">
                   {col.items.map((it) => (
-                    <li key={it}>
-                      <a href="#hero-cards" onClick={() => setOpen(false)} className="text-[1.05rem] text-ink hover:text-clay transition-colors">
-                        {it}
+                    <li key={it.l}>
+                      <a href={it.href} onClick={() => setOpen(false)} className="text-[1.05rem] text-ink hover:text-clay transition-colors">
+                        {it.l}
                       </a>
                     </li>
                   ))}

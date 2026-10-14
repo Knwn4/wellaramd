@@ -14,7 +14,7 @@ const COLUMNS: { title: string; links: { label: string; href: string; external?:
     links: [
       { label: "How it works", href: "#how-it-works" },
       { label: "Our providers", href: "#physicians" },
-      { label: "FAQs", href: "#faq" },
+      { label: "FAQs", href: "/faq" },
     ],
   },
   {

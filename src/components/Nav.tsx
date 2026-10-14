@@ -75,7 +75,7 @@ export default function Nav() {
               { h: "How it works", items: [
                 { l: "The process", href: "#how-it-works" },
                 { l: "Labs", href: "#labs" },
-                { l: "FAQs", href: "#faq" },
+                { l: "FAQs", href: "/faq" },
               ] },
               { h: "Company", items: [
                 { l: "Our providers", href: "#physicians" },

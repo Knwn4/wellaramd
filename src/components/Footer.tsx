@@ -54,7 +54,7 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-white/10">
           <p className="text-white/40 text-[0.76rem] leading-relaxed max-w-4xl">
-            WellaraMD connects patients with independent, licensed healthcare
+            WellaraMD LLC connects patients with independent, licensed healthcare
             providers and US-licensed pharmacies. The information on this site is
             for general educational purposes and is not a substitute for
             professional medical advice, diagnosis, or treatment. All treatments
@@ -73,10 +73,9 @@ export default function Footer() {
             <a href="/" className="hover:text-white">Home</a>
           </div>
           <p className="mt-6 text-white/40 text-[0.78rem]">
-            © {new Date().getFullYear()} WellaraMD. All rights reserved.
+            © {new Date().getFullYear()} WellaraMD LLC. All rights reserved.
           </p>
-          {/* TODO (LegitScript): replace with exact registered legal entity name,
-              and add physical business address + phone once provided by client. */}
+          {/* TODO (LegitScript): add physical business address + phone once provided by client. */}
         </div>
       </div>
 

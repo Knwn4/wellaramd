@@ -72,10 +72,16 @@ export default function Footer() {
             <a href="/telehealth-consent" className="hover:text-white">Telehealth Consent</a>
             <a href="/" className="hover:text-white">Home</a>
           </div>
-          <p className="mt-6 text-white/40 text-[0.78rem]">
+          <p className="mt-6 text-white/55 text-[0.8rem] leading-relaxed">
+            WellaraMD LLC · 1081 N Tustin Ave, Ste 115, PMB #4026, Anaheim, CA 92807
+            <br />
+            Toll-free <a href="tel:+18666675276" className="hover:text-white">(866) 667-5276</a>
+            {" · "}
+            <a href="mailto:support@wellaramd.com" className="hover:text-white">support@wellaramd.com</a>
+          </p>
+          <p className="mt-4 text-white/40 text-[0.78rem]">
             © {new Date().getFullYear()} WellaraMD LLC. All rights reserved.
           </p>
-          {/* TODO (LegitScript): add physical business address + phone once provided by client. */}
         </div>
       </div>
 

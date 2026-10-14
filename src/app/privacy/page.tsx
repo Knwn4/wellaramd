@@ -43,7 +43,7 @@ export default function PrivacyPage() {
         },
         {
           heading: "Contact",
-          body: "For privacy questions or requests, contact support@wellaramd.com.",
+          body: "For privacy questions or requests, contact privacy@wellaramd.com. WellaraMD LLC, 1081 N Tustin Ave, Ste 115, PMB #4026, Anaheim, CA 92807. Toll-free (866) 667-5276.",
         },
       ]}
     />

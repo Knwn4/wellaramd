@@ -1,21 +1,25 @@
 import Footer from "./Footer";
 
-type Section = { heading: string; body: string };
+type Section = { heading: string; body: React.ReactNode };
 
 /**
- * Shared shell for legal/policy pages. Content is a plain-language *template*
- * clearly marked as pending legal review — not final binding policy text.
+ * Shared shell for legal/policy pages. Pages marked `draft` show a
+ * "pending legal review" note; finalized pages pass draft={false}.
  */
 export default function LegalPage({
   title,
   updated,
   intro,
   sections,
+  draft = true,
+  contactEmail = "support@wellaramd.com",
 }: {
   title: string;
   updated: string;
-  intro: string;
+  intro: React.ReactNode;
   sections: Section[];
+  draft?: boolean;
+  contactEmail?: string;
 }) {
   return (
     <>
@@ -38,16 +42,18 @@ export default function LegalPage({
           </h1>
           <p className="muted text-[0.82rem] mt-3 font-mono">Last updated: {updated}</p>
 
-          <div className="mt-7 rounded-2xl border border-[var(--line)] bg-ivoryCard/60 p-5">
-            <p className="text-ink-2 text-[0.92rem] leading-relaxed">
-              This is a working template, provided for preview while the final
-              policy is being prepared with legal counsel. It is not yet a binding
-              agreement. The finalized version will be posted here before the
-              service is offered to patients.
-            </p>
-          </div>
+          {draft && (
+            <div className="mt-7 rounded-2xl border border-[var(--line)] bg-ivoryCard/60 p-5">
+              <p className="text-ink-2 text-[0.92rem] leading-relaxed">
+                This is a working template, provided for preview while the final
+                policy is being prepared with legal counsel. It is not yet a binding
+                agreement. The finalized version will be posted here before the
+                service is offered to patients.
+              </p>
+            </div>
+          )}
 
-          <p className="text-ink-2 text-[1.05rem] leading-relaxed mt-8">{intro}</p>
+          <div className="text-ink-2 text-[1.05rem] leading-relaxed mt-8 space-y-4">{intro}</div>
 
           <div className="mt-9 space-y-8">
             {sections.map((s, i) => (
@@ -55,17 +61,17 @@ export default function LegalPage({
                 <h2 className="text-ink text-[1.15rem] font-medium">
                   {i + 1}. {s.heading}
                 </h2>
-                <p className="muted text-[0.98rem] leading-relaxed mt-2">{s.body}</p>
+                <div className="muted text-[0.98rem] leading-relaxed mt-2 space-y-3">{s.body}</div>
               </section>
             ))}
           </div>
 
           <p className="muted text-[0.88rem] mt-12 border-t border-[var(--line-soft)] pt-6">
             Questions about this policy? Contact{" "}
-            <a href="mailto:support@wellaramd.com" className="text-ink underline underline-offset-2">
-              support@wellaramd.com
+            <a href={`mailto:${contactEmail}`} className="text-ink underline underline-offset-2">
+              {contactEmail}
             </a>
-            . WellaraMD Medical Group, Inc.
+            . WellaraMD LLC · 1081 N Tustin Ave, Ste 115, PMB #4026, Anaheim, CA 92807 · (866) 667-5276.
           </p>
         </div>
       </main>

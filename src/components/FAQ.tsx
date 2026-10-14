@@ -4,24 +4,24 @@ import { useState } from "react";
 
 const ITEMS = [
   {
-    q: "Who is WellaraMD for?",
-    a: "Women navigating perimenopause, menopause, thyroid and metabolic changes, or anyone who has been told their labs are 'normal' while still feeling unwell. Care is delivered entirely online and reviewed by licensed providers.",
+    q: "What is WellaraMD?",
+    a: "A telehealth company focused on hormone, metabolic, and longevity care. We connect you with independent, licensed providers and US-licensed pharmacies through our platform partner, MyDose. WellaraMD is not a medical practice or pharmacy and does not itself diagnose, treat, or dispense medication.",
   },
   {
-    q: "Do I need insurance?",
-    a: "No. Pricing is transparent and your medical review, treatment, and shipping are quoted up front. There are no membership requirements or hidden fees.",
+    q: "Is a prescription guaranteed?",
+    a: "No. A prescription is issued only if a licensed provider determines a treatment is medically appropriate for you after reviewing your health information. If you are not approved, you are not charged for medication.",
   },
   {
-    q: "What if I'm not approved for treatment?",
-    a: "If a provider determines a treatment isn't clinically appropriate for you, you aren't charged for it. A provider will always explain the reasoning and, where possible, suggest alternatives.",
+    q: "Are these medications FDA-approved?",
+    a: "Some are FDA-approved medications. Others are compounded medications prepared by licensed US pharmacies under FDA-regulated 503A or 503B authority; the specific compounded formulation has not undergone separate FDA approval. Your provider will tell you which is which, and FDA-approved alternatives may be available.",
   },
   {
-    q: "How long does delivery take?",
-    a: "Once your intake is reviewed and a prescription is approved, treatments typically ship within a few business days in discreet packaging.",
+    q: "Do you accept insurance?",
+    a: "No. Services are self-pay with transparent pricing and no membership or hidden fees. You may be able to use an HSA or FSA card, depending on your plan.",
   },
   {
-    q: "Are these treatments FDA approved?",
-    a: "Some are FDA-approved medications. Others are compounded preparations, which are not FDA-approved for safety or effectiveness and are prescribed only when clinically appropriate by a licensed provider. Your physician will tell you which is which.",
+    q: "Which states do you serve?",
+    a: "All 50 states, though availability of specific treatments may vary by state. You must be physically located in a state we serve at the time of your evaluation.",
   },
 ];
 
@@ -40,6 +40,9 @@ export default function FAQ() {
           <p className="muted text-[1rem] mt-5 max-w-sm">
             Common questions about treatment, the medical review, and how care works.
           </p>
+          <a href="/faq" className="inline-flex items-center gap-1.5 eyebrow text-ink mt-6 hover:opacity-70 transition-opacity">
+            See all FAQs <span aria-hidden>→</span>
+          </a>
         </div>
 
         <div>

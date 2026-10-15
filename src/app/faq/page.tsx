@@ -101,9 +101,33 @@ const GROUPS: Group[] = [
   },
 ];
 
+const FAQ_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    ["What is WellaraMD?", "WellaraMD LLC is a telehealth company focused on hormone, metabolic, and longevity care. We connect patients with independent, licensed healthcare providers and US-licensed pharmacies through our platform partner, MyDose. WellaraMD is not a medical practice or a pharmacy."],
+    ["How does it work?", "Complete an online intake, a provider licensed in your state reviews it and (where required) meets with you, your provider decides whether a treatment is medically appropriate, and if a prescription is issued a licensed pharmacy fills and ships it. You can message your care team through the patient portal."],
+    ["Is a prescription guaranteed?", "No. A prescription is issued only if a licensed provider determines a treatment is medically appropriate for you after reviewing your health information. If you are not approved, you are not charged for medication."],
+    ["Are these medications FDA-approved?", "Some are FDA-approved medications. Others are compounded medications prepared by licensed US pharmacies under FDA-regulated 503A or 503B authority; the specific compounded formulation has not undergone separate FDA approval. FDA-approved alternatives may be available."],
+    ["Do you accept insurance?", "No. Services are self-pay with transparent pricing and no membership or hidden fees. You may be able to use an HSA or FSA card, depending on your plan."],
+    ["Which states do you serve?", "All 50 states, though availability of specific treatments may vary by state. You must be physically located in a state we serve at the time of your evaluation."],
+    ["Which pharmacies fill my prescription?", "US-licensed pharmacies in the MyDose network that are licensed to dispense in your state. Our partner pharmacies are Pharmacy Hub and Striker."],
+    ["What is your refund policy?", "If your provider does not approve a prescription, you are not charged for medication. Because prescription medications cannot be returned once dispensed, orders are generally non-refundable after the pharmacy has filled them. If your order arrives damaged or incorrect, contact us within 14 days of delivery."],
+    ["Is my information private?", "Yes. Your health information is protected under HIPAA and applicable state law. We never sell your personal or health information."],
+  ].map(([q, a]) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
 export default function FaqPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}
+      />
       <header className="bg-ivory border-b border-[var(--line-soft)] sticky top-0 z-40">
         <div className="mx-auto max-w-[1440px] px-5 lg:px-8 h-16 flex items-center justify-between">
           <a href="/" className="logo text-[1.6rem] leading-none text-ink lowercase tracking-tight">

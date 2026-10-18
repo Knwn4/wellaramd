@@ -146,7 +146,6 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
               <a
                 key={t.id}
                 href={href}
-                data-product={t.name}
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="press group rounded-[var(--r)] bg-ivory2 border border-[var(--line-soft)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_28px_56px_-32px_rgba(20,20,20,0.4)]"
               >

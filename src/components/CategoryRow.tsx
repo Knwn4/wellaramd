@@ -153,7 +153,6 @@ export default function CategoryRow({
                 <div className="mt-auto border-t border-[var(--line-soft)]">
                   <a
                     href={href}
-                    data-product={t.name}
                     {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="block py-3.5 text-center text-[0.85rem] font-medium bg-ink text-ivory hover:bg-ink-2 transition-colors"
                   >

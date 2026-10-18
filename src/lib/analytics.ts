@@ -1,22 +1,27 @@
 "use client";
 
 /**
- * Unified conversion tracking. One call fans out to:
- *  - Meta Pixel (browser)          → window.fbq
- *  - GA4 (browser)                 → window.gtag
- *  - Meta Conversions API (server) → /api/capi, deduped with the pixel via eventId
+ * The one conversion a storefront sends: someone clicked through to a MyDose
+ * booking link. It goes to the Meta pixel, GA4 and the /api/capi relay under one
+ * event id so Meta dedupes it.
  *
- * No PHI/health data is ever passed here — only marketing events (page views,
- * "Get started" clicks). The actual intake happens off-site on app.mydose.ai.
+ * No parameters, ever. A product name, category, price or content id here is
+ * health information under Meta's Business Tools Terms, and it is the pattern
+ * the Jul 2026 FTC complaint against Hims is built on.
+ *
+ * Copy to lib/analytics.ts.
  */
-
-type Params = Record<string, unknown>;
 
 declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void;
     gtag?: (...args: unknown[]) => void;
   }
+}
+
+function readCookie(name: string): string | undefined {
+  const m = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+  return m ? decodeURIComponent(m[2]) : undefined;
 }
 
 function uuid(): string {
@@ -27,36 +32,24 @@ function uuid(): string {
   }
 }
 
-function readCookie(name: string): string | undefined {
-  const m = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-  return m ? decodeURIComponent(m[2]) : undefined;
-}
-
-export function track(event: string, params: Params = {}): void {
+export function trackLead(): void {
   if (typeof window === "undefined") return;
-  const eventId = uuid();
+  const eventID = uuid();
 
-  // Meta Pixel (browser)
-  window.fbq?.("track", event, params, { eventID: eventId });
+  window.fbq?.("track", "Lead", {}, { eventID });
+  window.gtag?.("event", "Lead");
 
-  // GA4 (browser)
-  window.gtag?.("event", event, params);
-
-  // Meta Conversions API (server) — same eventId lets Meta dedupe against the pixel.
   try {
-    const body = JSON.stringify({
-      event,
-      eventId,
-      url: window.location.href,
-      params,
-      fbp: readCookie("_fbp"),
-      fbc: readCookie("_fbc"),
-    });
-    // keepalive: survives the navigation that an outbound click triggers.
     fetch("/api/capi", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body,
+      body: JSON.stringify({
+        eventId: eventID,
+        path: window.location.pathname,
+        fbp: readCookie("_fbp"),
+        fbc: readCookie("_fbc"),
+      }),
+      // keepalive: survives the navigation that an outbound click triggers.
       keepalive: true,
     }).catch(() => {});
   } catch {

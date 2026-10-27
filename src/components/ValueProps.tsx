@@ -8,7 +8,7 @@ const PROPS = [
   },
   {
     title: "Specialists in women's health",
-    body: "Hormones, perimenopause, and metabolic care are the whole practice — not a side category.",
+    body: "Weight, metabolic, and longevity care are the whole practice, not a side category.",
     icon: <IconBloom />,
   },
   {
@@ -32,7 +32,7 @@ export default function ValueProps() {
           <Reveal>
             <span className="eyebrow text-ink-2">Why WellaraMD</span>
             <h2 className="display text-ink text-[2.4rem] lg:text-[3.4rem] leading-[1.03] mt-4">
-              Bringing real hormone care home,
+              Bringing modern women's care home,
               <br />
               <span className="display-i">100% online.</span>
             </h2>

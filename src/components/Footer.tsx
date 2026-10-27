@@ -6,7 +6,7 @@ const COLUMNS: { title: string; links: { label: string; href: string; external?:
     links: [
       { label: "Browse all", href: "#treatments" },
       { label: "Weight & metabolic", href: "#treatments" },
-      { label: "Hormone & longevity", href: "#treatments" },
+      { label: "Longevity & peptides", href: "#treatments" },
     ],
   },
   {

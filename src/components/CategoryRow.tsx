@@ -23,7 +23,7 @@ function descriptorFor(t: Treatment): string {
   if (/nad\+/.test(n)) return "Cellular energy support";
   if (/glutathione/.test(n)) return "Antioxidant, immune support";
   if (/b12|methylcobalamin/.test(n)) return "Energy and mood support";
-  if (/sermorelin|tesamorelin|ipamorelin|cjc/.test(n)) return "Growth hormone peptide";
+  if (/sermorelin|tesamorelin|ipamorelin|cjc/.test(n)) return "Longevity peptide";
   if (/bpc|tb-500/.test(n)) return "Recovery and tissue repair";
   if (/epithalon/.test(n)) return "Longevity peptide";
   if (/ghk/.test(n)) return "Skin and collagen support";

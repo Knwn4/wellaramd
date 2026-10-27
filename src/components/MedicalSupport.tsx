@@ -48,7 +48,7 @@ export default function MedicalSupport() {
                   </span>
                 </div>
                 <p className="display text-ink text-[1.5rem] mt-3 leading-tight">
-                  Hormone Balance
+                  Metabolic Health
                 </p>
                 <svg viewBox="0 0 160 40" className="w-full h-9 mt-2" fill="none" aria-hidden>
                   <polyline

@@ -30,37 +30,36 @@ const serif = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL("https://wellaramd.com"),
   title: {
-    default: "WellaraMD — Women's Hormone & Longevity Medicine",
+    default: "WellaraMD — Weight, Metabolic & Longevity Medicine for Women",
     template: "%s — WellaraMD",
   },
   description:
-    "Hormone, metabolic, and longevity care built for women. Reviewed by licensed, US-based providers and delivered to your door. Perimenopause through menopause and beyond.",
+    "Weight, metabolic, and longevity care built for women. Reviewed by licensed, US-based providers and delivered to your door.",
   keywords: [
-    "hormone therapy",
-    "menopause",
-    "perimenopause",
-    "HRT for women",
-    "longevity medicine",
-    "metabolic health",
     "weight loss telehealth",
     "GLP-1",
-    "telehealth",
+    "semaglutide",
+    "tirzepatide",
+    "metabolic health",
+    "longevity medicine",
     "peptide therapy",
+    "women's health",
+    "telehealth",
   ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "https://wellaramd.com",
     siteName: "WellaraMD",
-    title: "WellaraMD — Women's Hormone & Longevity Medicine",
+    title: "WellaraMD — Weight, Metabolic & Longevity Medicine for Women",
     description:
-      "Hormone, metabolic, and longevity care built for women. Reviewed by licensed, US-based providers and delivered to your door.",
+      "Weight, metabolic, and longevity care built for women. Reviewed by licensed, US-based providers and delivered to your door.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "WellaraMD — Women's Hormone & Longevity Medicine",
+    title: "WellaraMD — Weight, Metabolic & Longevity Medicine for Women",
     description:
-      "Hormone, metabolic, and longevity care built for women, reviewed by licensed providers.",
+      "Weight, metabolic, and longevity care built for women, reviewed by licensed providers.",
   },
   // To verify in Google Search Console, add the code here:
   // verification: { google: "<token>" },
@@ -78,7 +77,7 @@ const ORG_JSONLD = {
       logo: "https://wellaramd.com/icon.png",
       image: "https://wellaramd.com/opengraph-image.png",
       description:
-        "WellaraMD connects patients with independent, licensed US providers and pharmacies for hormone, metabolic, and longevity care via telehealth.",
+        "WellaraMD connects patients with independent, licensed US providers and pharmacies for weight, metabolic, and longevity care via telehealth.",
       email: "support@wellaramd.com",
       telephone: "+1-866-667-5276",
       address: {

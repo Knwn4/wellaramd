@@ -5,7 +5,7 @@ import { useState } from "react";
 const ITEMS = [
   {
     q: "What is WellaraMD?",
-    a: "A telehealth company focused on hormone, metabolic, and longevity care. We connect you with independent, licensed providers and US-licensed pharmacies through our platform partner, MyDose. WellaraMD is not a medical practice or pharmacy and does not itself diagnose, treat, or dispense medication.",
+    a: "A telehealth company focused on weight, metabolic, and longevity care. We connect you with independent, licensed providers and US-licensed pharmacies through our platform partner, MyDose. WellaraMD is not a medical practice or pharmacy and does not itself diagnose, treat, or dispense medication.",
   },
   {
     q: "Is a prescription guaranteed?",

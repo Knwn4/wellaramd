@@ -16,7 +16,7 @@ const GROUPS: Group[] = [
     items: [
       {
         q: "What is WellaraMD?",
-        a: "WellaraMD LLC is a telehealth company focused on hormone, metabolic, and longevity care. We connect patients with independent, licensed healthcare providers and US-licensed pharmacies through our platform partner, MyDose. WellaraMD is not a medical practice or a pharmacy, and does not itself diagnose, treat, or dispense medication.",
+        a: "WellaraMD LLC is a telehealth company focused on weight, metabolic, and longevity care. We connect patients with independent, licensed healthcare providers and US-licensed pharmacies through our platform partner, MyDose. WellaraMD is not a medical practice or a pharmacy, and does not itself diagnose, treat, or dispense medication.",
       },
       {
         q: "How does it work?",
@@ -105,7 +105,7 @@ const FAQ_JSONLD = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    ["What is WellaraMD?", "WellaraMD LLC is a telehealth company focused on hormone, metabolic, and longevity care. We connect patients with independent, licensed healthcare providers and US-licensed pharmacies through our platform partner, MyDose. WellaraMD is not a medical practice or a pharmacy."],
+    ["What is WellaraMD?", "WellaraMD LLC is a telehealth company focused on weight, metabolic, and longevity care. We connect patients with independent, licensed healthcare providers and US-licensed pharmacies through our platform partner, MyDose. WellaraMD is not a medical practice or a pharmacy."],
     ["How does it work?", "Complete an online intake, a provider licensed in your state reviews it and (where required) meets with you, your provider decides whether a treatment is medically appropriate, and if a prescription is issued a licensed pharmacy fills and ships it. You can message your care team through the patient portal."],
     ["Is a prescription guaranteed?", "No. A prescription is issued only if a licensed provider determines a treatment is medically appropriate for you after reviewing your health information. If you are not approved, you are not charged for medication."],
     ["Are these medications FDA-approved?", "Some are FDA-approved medications. Others are compounded medications prepared by licensed US pharmacies under FDA-regulated 503A or 503B authority; the specific compounded formulation has not undergone separate FDA approval. FDA-approved alternatives may be available."],

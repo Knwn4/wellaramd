@@ -7,8 +7,8 @@ import type { Treatment } from "./types";
  * Each product carries the MyDose intake form it routes to (`intakeFormId`,
  * pulled live from the platform's /intake-forms list). The "Get started" CTA
  * builds the patient link from NEXT_PUBLIC_MYDOSE_INTAKE_URL + that form id, so
- * once Open Intake is enabled in MyDose and its base URL is set, all 14 products
- * link to their exact form automatically — no per-product URLs to paste.
+ * once Open Intake is enabled in MyDose and its base URL is set, every product
+ * links to its exact form automatically — no per-product URLs to paste.
  */
 
 const t = (
@@ -104,15 +104,13 @@ const F = {
  * straight to their MyDose consultation page.
  */
 export const STATIC_CATALOG: Treatment[] = [
-  // ── Peptides, hormones & longevity (MyDose packages) ──────────────────
+  // ── Peptides & longevity (MyDose packages) ────────────────────────────
   np("glutathione-inj", "Glutathione Injectable", ["immunity", "longevity"], 349, ["Injectable"], BOOK.glutathione),
   t("nad", "NAD+ Injectable", ["longevity", "energy", "recovery", "focus"], [{ form: "Injectable", priceMonthly: 262.5 }], F.antiAging, BOOK.nadStk),
-  np("finasteride", "Finasteride", ["hormones-men", "longevity"], 99, ["Oral"], BOOK.finasteride),
   np("methylcobalamin-b12", "Methylcobalamin B12", ["energy", "longevity"], 165, ["Injectable"], BOOK.b12),
   t("tesamorelin", "Tesamorelin", ["longevity", "recovery", "performance"], [{ form: "Injectable", priceMonthly: 450 }], F.tesamorelin, BOOK.tesamorelin),
   t("sermorelin", "Sermorelin", ["longevity", "recovery", "performance"], [{ form: "Injectable", priceMonthly: 300 }], F.sermorelin, BOOK.sermorelinStk),
   np("pt-141", "PT-141", ["sexual-health"], 200, ["Injectable"], BOOK.pt141),
-  t("enclomiphene", "Enclomiphene", ["hormones-men"], [{ form: "Oral", priceMonthly: 199 }], F.enclomiphene, BOOK.enclomiphene),
 
   // ── Weight & metabolic (MyDose packages) ──────────────────────────────
   t("semaglutide-b12", "Semaglutide + B12", ["weight-loss"], [{ form: "Injectable", priceMonthly: 300 }], F.semaglutide, BOOK.semaB12),
@@ -125,9 +123,15 @@ export const STATIC_CATALOG: Treatment[] = [
   np("tirzepatide-b12-microdose", "Tirzepatide + B12 Microdose", ["weight-loss"], 199, ["Injectable"], BOOK.tirzB12Micro),
 
   // ── REMOVED for LegitScript application (Oct 2026) ─────────────────────
-  // Flagged as non-compliant: Retatrutide (investigational, not FDA-approved),
-  // and FDA-flagged peptides / blends. Re-add if MyDose pharmacy confirms
-  // compliant status. BOOK links preserved above.
+  // Hormone meds pulled for the LegitScript pass: Enclomiphene and Finasteride
+  // (both testosterone/DHT-pathway "hormones-men" drugs). WellaraMD no longer
+  // markets or sells hormone therapy; re-add only if LegitScript and the MyDose
+  // pharmacy both confirm compliant status. BOOK/F entries preserved above.
+  //   np("finasteride", "Finasteride", ["hormones-men","longevity"], 99, ["Oral"], BOOK.finasteride),
+  //   t("enclomiphene", "Enclomiphene", ["hormones-men"], [{ form:"Oral", priceMonthly:199 }], F.enclomiphene, BOOK.enclomiphene),
+  //
+  // Earlier removals (non-compliant): Retatrutide (investigational, not
+  // FDA-approved) and FDA-flagged peptides / blends. BOOK links preserved above.
   //   t("glow", "GLOW Injection", ["recovery"], [{ form: "Injectable", priceMonthly: 249 }], F.peptide, BOOK.glow-was-inline),
   //   np("ghk-cu", "GHK-Cu", ["longevity"], 229, ["Injectable"], BOOK.ghkCu),
   //   np("mots-c", "MOTS-C", ["weight-loss","energy","performance"], 475, ["Injectable"], BOOK.motsc),

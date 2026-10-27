@@ -111,7 +111,7 @@ export default function GLHero() {
         </h1>
 
         <p className="muted text-[1.05rem] mt-6 max-w-lg">
-          Hormone, metabolic, and longevity care built for women — reviewed by
+          Weight, metabolic, and longevity care built for women. Reviewed by
           licensed physicians, delivered to your door.
         </p>
 

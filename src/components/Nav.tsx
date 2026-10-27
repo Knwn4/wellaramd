@@ -17,7 +17,7 @@ export default function Nav() {
     <>
       {/* Announcement bar */}
       <div className="w-full bg-sand text-ink text-center text-[0.9rem] py-2.5 px-4">
-        <span className="opacity-90">Hormone care, finally built for women.</span>{" "}
+        <span className="opacity-90">Modern metabolic and longevity care, built for women.</span>{" "}
         <a href="#evaluation" className="font-semibold underline underline-offset-2 inline-flex items-center gap-1">
           Begin your evaluation <span aria-hidden>→</span>
         </a>
@@ -70,7 +70,7 @@ export default function Nav() {
               { h: "Treatments", items: [
                 { l: "Browse all", href: "#treatments" },
                 { l: "Weight & metabolic", href: "#treatments" },
-                { l: "Hormone & longevity", href: "#treatments" },
+                { l: "Longevity & peptides", href: "#treatments" },
               ] },
               { h: "How it works", items: [
                 { l: "The process", href: "#how-it-works" },

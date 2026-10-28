@@ -39,6 +39,10 @@ export type Treatment = {
   published: boolean;
   /** Which adapter produced this record */
   source: "mydose" | "static";
+  /** True when the product is a compounded medication (503A/503B), i.e. not
+      FDA-approved. Drives the per-card "Compounded · Not FDA-approved" + pharmacy
+      disclosure required by LegitScript. */
+  compounded?: boolean;
   /** Delivery-system variants and their prices (empty when single-form). */
   forms?: Form[];
   /** MyDose intake/order form URL — where "Get started" sends the patient.

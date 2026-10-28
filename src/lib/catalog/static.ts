@@ -29,6 +29,7 @@ const t = (
   bloodTests: 0,
   published: true,
   source: "static",
+  compounded: true,
   forms: forms.map((f) => ({ ...f, formUrl: "" })),
   formUrl,
   intakeFormId: intake.id,
@@ -81,6 +82,7 @@ const np = (
   bloodTests: 0,
   published: true,
   source: "static",
+  compounded: true,
   forms: forms.map((f) => ({ form: f, priceMonthly })),
   formUrl,
 });
@@ -108,7 +110,6 @@ export const STATIC_CATALOG: Treatment[] = [
   np("glutathione-inj", "Glutathione Injectable", ["immunity", "longevity"], 349, ["Injectable"], BOOK.glutathione),
   t("nad", "NAD+ Injectable", ["longevity", "energy", "recovery", "focus"], [{ form: "Injectable", priceMonthly: 262.5 }], F.antiAging, BOOK.nadStk),
   np("methylcobalamin-b12", "Methylcobalamin B12", ["energy", "longevity"], 165, ["Injectable"], BOOK.b12),
-  t("tesamorelin", "Tesamorelin", ["longevity", "recovery", "performance"], [{ form: "Injectable", priceMonthly: 450 }], F.tesamorelin, BOOK.tesamorelin),
   t("sermorelin", "Sermorelin", ["longevity", "recovery", "performance"], [{ form: "Injectable", priceMonthly: 300 }], F.sermorelin, BOOK.sermorelinStk),
   np("pt-141", "PT-141", ["sexual-health"], 200, ["Injectable"], BOOK.pt141),
 
@@ -129,6 +130,9 @@ export const STATIC_CATALOG: Treatment[] = [
   // pharmacy both confirm compliant status. BOOK/F entries preserved above.
   //   np("finasteride", "Finasteride", ["hormones-men","longevity"], 99, ["Oral"], BOOK.finasteride),
   //   t("enclomiphene", "Enclomiphene", ["hormones-men"], [{ form:"Oral", priceMonthly:199 }], F.enclomiphene, BOOK.enclomiphene),
+  //
+  // Tesamorelin pulled per client (Oct 28 2026, LegitScript round 2). BOOK/F kept.
+  //   t("tesamorelin", "Tesamorelin", ["longevity","recovery","performance"], [{ form:"Injectable", priceMonthly:450 }], F.tesamorelin, BOOK.tesamorelin),
   //
   // Earlier removals (non-compliant): Retatrutide (investigational, not
   // FDA-approved) and FDA-flagged peptides / blends. BOOK links preserved above.

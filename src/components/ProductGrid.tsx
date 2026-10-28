@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Product } from "./Visuals";
 import type { Treatment } from "@/lib/catalog/types";
+import { COMPOUNDED_LABEL, COMPOUNDER_NOTE } from "@/lib/compliance";
 
 type ProductName = "pen" | "vial" | "dropper" | "capsules" | "labkit";
 
@@ -170,6 +171,11 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
                   <h3 className="text-ink font-medium text-[1.05rem] mt-2 leading-tight">
                     {t.name}
                   </h3>
+                  {t.compounded && (
+                    <span className="mt-2 w-fit rounded-full border border-[var(--line)] px-2 py-0.5 text-[0.6rem] uppercase tracking-wider text-ink-2">
+                      {COMPOUNDED_LABEL}
+                    </span>
+                  )}
 
                   <div className="mt-auto pt-4 flex items-baseline justify-between">
                     <span className="text-ink text-[1rem] font-medium">
@@ -187,6 +193,12 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
                       Start →
                     </span>
                   </div>
+
+                  {t.compounded && (
+                    <p className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[0.62rem] leading-snug text-ink-2/60">
+                      {COMPOUNDER_NOTE}
+                    </p>
+                  )}
                 </div>
               </a>
             );

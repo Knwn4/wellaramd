@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { Product } from "./Visuals";
 import type { Treatment } from "@/lib/catalog/types";
+import { COMPOUNDED_LABEL, COMPOUNDER_NOTE } from "@/lib/compliance";
 
 type ProductName = "pen" | "vial" | "dropper" | "capsules" | "labkit";
 
@@ -123,6 +124,11 @@ export default function CategoryRow({
                   <p className="eyebrow text-ink-2/70 mt-1.5 leading-snug">
                     {descriptorFor(t)}
                   </p>
+                  {t.compounded && (
+                    <span className="mt-2 inline-block w-fit rounded-full border border-[var(--line)] px-2 py-0.5 text-[0.58rem] uppercase tracking-wider text-ink-2">
+                      {COMPOUNDED_LABEL}
+                    </span>
+                  )}
                 </div>
 
                 {/* product */}
@@ -148,6 +154,12 @@ export default function CategoryRow({
                     </span>
                   )}
                 </div>
+
+                {t.compounded && (
+                  <p className="px-5 pb-3 text-[0.58rem] leading-snug text-ink-2/60">
+                    {COMPOUNDER_NOTE}
+                  </p>
+                )}
 
                 {/* footer — single CTA to the product's booking page */}
                 <div className="mt-auto border-t border-[var(--line-soft)]">

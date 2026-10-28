@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Product } from "@/components/Visuals";
+import { COMPOUNDER_NOTE } from "@/lib/compliance";
 
 /* ============================================================================
    /start — paid landing page (the ad destination)
@@ -171,13 +173,7 @@ export default function StartPage() {
             </div>
             {/* floating product render */}
             <div className="hidden sm:block absolute -left-4 lg:-left-8 bottom-10 w-[150px] lg:w-[180px] drop-shadow-[0_24px_48px_-24px_rgba(20,20,20,0.5)]">
-              <Image
-                src="/products/dropper.png"
-                alt="WellaraMD treatment"
-                width={360}
-                height={480}
-                className="w-full h-auto"
-              />
+              <Product name="dropper" float={false} className="w-full h-auto" />
             </div>
             {/* floating trust card */}
             <div className="hidden sm:flex absolute -right-3 lg:-right-6 top-8 items-center gap-3 bg-ivory2 border border-[var(--line-soft)] rounded-2xl px-4 py-3 shadow-[0_24px_48px_-28px_rgba(20,20,20,0.4)]">
@@ -303,8 +299,8 @@ export default function StartPage() {
           <p>
             Some treatments may be compounded. Compounded medications are not
             reviewed by the FDA for safety, effectiveness, or manufacturing
-            quality. This page is for general information and is not medical
-            advice.
+            quality. {COMPOUNDER_NOTE} This page is for general information and is
+            not medical advice.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-ink-2">
             <a href="/privacy" className="hover:text-ink">Privacy Policy</a>

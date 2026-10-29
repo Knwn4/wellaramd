@@ -53,19 +53,40 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/10">
-          <p className="text-white/40 text-[0.76rem] leading-relaxed max-w-4xl">
-            WellaraMD LLC connects patients with independent, licensed healthcare
-            providers and US-licensed pharmacies. The information on this site is
-            for general educational purposes and is not a substitute for
-            professional medical advice, diagnosis, or treatment. All treatments
-            are prescription-only and are dispensed solely where a licensed
-            provider determines they are clinically appropriate following an
-            evaluation. Products are not available in all states, and availability
-            is subject to applicable law. Must be 18 or older. Individual results
-            vary and are not guaranteed. Compounded medications are not approved or
-            evaluated by the FDA for safety, effectiveness, or quality. Questions?
-            Contact support@wellaramd.com.
-          </p>
+          <div className="text-white/40 text-[0.76rem] leading-relaxed max-w-4xl space-y-3">
+            <p>
+              WellaraMD LLC connects patients with independent, licensed
+              healthcare providers and US-licensed pharmacies. The information on
+              this site is for general educational purposes and is not a
+              substitute for professional medical advice, diagnosis, or treatment.
+              All treatments are prescription-only, available only where a
+              licensed provider determines they are clinically appropriate
+              following an evaluation. Availability varies by state. Must be 18 or
+              older.
+            </p>
+            <p>
+              MyDose.ai is a software platform for licensed healthcare providers.
+              It does not diagnose, prescribe, or dispense medication. All
+              prescriptions are issued by independently licensed US physicians
+              based on individual patient evaluation. All medications are
+              dispensed by licensed US pharmacies.
+            </p>
+            <p>
+              Compounded medications are prepared by licensed US compounding
+              pharmacies operating under FDA-regulated 503A or 503B authority. The
+              specific compounded formulation has not undergone separate FDA
+              approval. FDA-approved alternatives may be available; patients should
+              discuss options with their prescribing physician.
+            </p>
+            <p>
+              Individual results vary. Outcomes depend on adherence to your
+              treatment plan, lifestyle factors, and individual biological
+              response. No specific outcome is guaranteed. All medications carry
+              potential risks and side effects; review your informed consent and
+              discuss any concerns with your physician. Questions? Contact
+              support@wellaramd.com.
+            </p>
+          </div>
           <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-white/55 text-[0.8rem]">
             <a href="/terms" className="hover:text-white">Terms &amp; Conditions</a>
             <a href="/privacy" className="hover:text-white">Privacy Policy</a>

@@ -73,7 +73,7 @@ export default function Footer() {
             </p>
             <p>
               Compounded medications are prepared by licensed US compounding
-              pharmacies operating under FDA-regulated 503A or 503B authority. The
+              pharmacies operating under FDA-regulated 503A authority. The
               specific compounded formulation has not undergone separate FDA
               approval. FDA-approved alternatives may be available; patients should
               discuss options with their prescribing physician.

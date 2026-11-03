@@ -32,7 +32,7 @@ export default function TelehealthConsentPage() {
         },
         {
           heading: "Prescriptions & compounded medications",
-          body: "Any prescription is issued at the independent clinical judgment of a licensed provider, only where clinically appropriate and permitted by law in your state. Some treatments are FDA-approved and others are compounded by licensed US pharmacies under FDA-regulated 503A or 503B authority; the specific compounded formulation has not undergone separate FDA approval, and FDA-approved alternatives may be available. Your provider will tell you whether your treatment is FDA-approved or compounded.",
+          body: "Any prescription is issued at the independent clinical judgment of a licensed provider, only where clinically appropriate and permitted by law in your state. Some treatments are FDA-approved and others are compounded by a licensed US 503A compounding pharmacy; the specific compounded formulation has not undergone separate FDA approval, and FDA-approved alternatives may be available. Your provider will tell you whether your treatment is FDA-approved or compounded.",
         },
         {
           heading: "Privacy of your information",

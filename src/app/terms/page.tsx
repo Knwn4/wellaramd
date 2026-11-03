@@ -24,7 +24,7 @@ export default function TermsPage() {
         },
         {
           heading: "Prescription products",
-          body: "All medications offered are prescription-only. A prescription is issued only if, and only where, a licensed provider determines it is clinically appropriate for you after an evaluation, and only where permitted by the law of your state. Submitting an intake does not guarantee that a prescription will be issued. Some treatments are FDA-approved medications and others are compounded medications prepared by licensed US pharmacies under FDA-regulated 503A or 503B authority; the specific compounded formulation has not undergone separate FDA approval, and FDA-approved alternatives may be available.",
+          body: "All medications offered are prescription-only. A prescription is issued only if, and only where, a licensed provider determines it is clinically appropriate for you after an evaluation, and only where permitted by the law of your state. Submitting an intake does not guarantee that a prescription will be issued. Some treatments are FDA-approved medications and others are compounded medications prepared by a licensed US 503A compounding pharmacy; the specific compounded formulation has not undergone separate FDA approval, and FDA-approved alternatives may be available.",
         },
         {
           heading: "Pricing, plans & billing",

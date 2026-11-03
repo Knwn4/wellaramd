@@ -66,7 +66,7 @@ export const ARTICLES: Article[] = [
       { type: "h2", text: "FDA-approved vs. compounded" },
       {
         type: "p",
-        text: "Some GLP-1 products are FDA-approved brand medications. Others are compounded preparations made by licensed US pharmacies under FDA-regulated 503A or 503B authority. A compounded formulation has not undergone separate FDA approval. A provider will tell you which is which, and FDA-approved options may be available.",
+        text: "Some GLP-1 products are FDA-approved brand medications. Others are compounded preparations made by a licensed US 503A compounding pharmacy. A compounded formulation has not undergone separate FDA approval. A provider will tell you which is which, and FDA-approved options may be available.",
       },
       { type: "h2", text: "What a provider weighs before prescribing" },
       {

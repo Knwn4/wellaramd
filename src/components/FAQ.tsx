@@ -13,7 +13,7 @@ const ITEMS = [
   },
   {
     q: "Are these medications FDA-approved?",
-    a: "Some are FDA-approved medications. Others are compounded medications prepared by licensed US pharmacies under FDA-regulated 503A or 503B authority; the specific compounded formulation has not undergone separate FDA approval. Your provider will tell you which is which, and FDA-approved alternatives may be available.",
+    a: "The treatments currently offered through WellaraMD are compounded medications, prepared by a licensed 503A compounding pharmacy, The Pharmacy Hub LLC. Compounded medications are not FDA-approved, and the FDA does not review them for safety, effectiveness, or quality. FDA-approved alternatives may be available; talk with your provider about which option is right for you.",
   },
   {
     q: "Do you accept insurance?",

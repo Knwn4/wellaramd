@@ -50,7 +50,7 @@ const GROUPS: Group[] = [
   {
     title: "Medications and safety",
     items: [
-      { q: "Are these medications FDA-approved?", a: "Some treatments are FDA-approved medications. Others are compounded medications, prepared by licensed US compounding pharmacies operating under FDA-regulated 503A or 503B authority. The specific compounded formulation has not undergone separate FDA approval. Your provider will tell you whether your treatment is FDA-approved or compounded, and FDA-approved alternatives may be available." },
+      { q: "Are these medications FDA-approved?", a: "The treatments currently offered through WellaraMD are compounded medications, prepared by a licensed 503A compounding pharmacy, The Pharmacy Hub LLC. Compounded medications are not FDA-approved, and the FDA does not review them for safety, effectiveness, or quality. FDA-approved alternatives may be available; talk with your provider about which option is right for you." },
       { q: "What is a compounded GLP-1 protocol?", a: "It is a physician-supervised protocol for patients pursuing meaningful weight loss, using a GLP-1 medication customized for you and prepared by a licensed compounding pharmacy. It is prescribed only when your provider determines it is appropriate for you." },
       { q: "What results can I expect?", a: "Individual results vary. Outcomes depend on adherence to your treatment plan, lifestyle factors, and individual biological response. No specific outcome is guaranteed. Your provider will talk with you about realistic goals, risks, and side effects before you begin." },
       { q: "What are the side effects?", a: "Every medication has possible side effects. Your provider will review them with you, and the pharmacy includes medication information with your order. Contact your care team right away if you have side effects, and call 911 for any severe reaction." },
@@ -60,7 +60,7 @@ const GROUPS: Group[] = [
   {
     title: "Pharmacies, shipping, and availability",
     items: [
-      { q: "Which pharmacies fill my prescription?", a: "Prescriptions are filled by US-licensed pharmacies in the MyDose network that are licensed to dispense in your state. Our partner pharmacy is The Pharmacy Hub LLC (Miami, FL), a LegitScript-certified pharmacy." },
+      { q: "Which pharmacies fill my prescription?", a: "Prescriptions are filled and shipped by The Pharmacy Hub LLC (Miami, FL), a licensed 503A compounding pharmacy and a LegitScript-certified pharmacy. WellaraMD does not compound or dispense medications." },
       { q: "How long does delivery take?", a: "Most orders ship within a few business days after your prescription is approved and arrive in discreet packaging. Some medications ship cold and must be refrigerated on arrival." },
       { q: "Which states do you serve?", a: "Services are available in all 50 states. Availability of specific treatments may vary by state. You must be physically located in a state we serve at the time of your evaluation, and your shipping address must be in a state we serve." },
       { q: "Do you ship internationally?", a: "No. We ship only to addresses in the United States, within the states where our providers and pharmacies are licensed." },
@@ -108,10 +108,10 @@ const FAQ_JSONLD = {
     ["What is WellaraMD?", "WellaraMD LLC is a telehealth company focused on weight, metabolic, and longevity care. We connect patients with independent, licensed healthcare providers and US-licensed pharmacies through our platform partner, MyDose. WellaraMD is not a medical practice or a pharmacy."],
     ["How does it work?", "Complete an online intake, a provider licensed in your state reviews it and (where required) meets with you, your provider decides whether a treatment is medically appropriate, and if a prescription is issued a licensed pharmacy fills and ships it. You can message your care team through the patient portal."],
     ["Is a prescription guaranteed?", "No. A prescription is issued only if a licensed provider determines a treatment is medically appropriate for you after reviewing your health information. If you are not approved, you are not charged for medication."],
-    ["Are these medications FDA-approved?", "Some are FDA-approved medications. Others are compounded medications prepared by licensed US pharmacies under FDA-regulated 503A or 503B authority; the specific compounded formulation has not undergone separate FDA approval. FDA-approved alternatives may be available."],
+    ["Are these medications FDA-approved?", "The treatments currently offered through WellaraMD are compounded medications, prepared by a licensed 503A compounding pharmacy, The Pharmacy Hub LLC. Compounded medications are not FDA-approved, and the FDA does not review them for safety, effectiveness, or quality. FDA-approved alternatives may be available."],
     ["Do you accept insurance?", "No. Services are self-pay with transparent pricing and no membership or hidden fees. You may be able to use an HSA or FSA card, depending on your plan."],
     ["Which states do you serve?", "All 50 states, though availability of specific treatments may vary by state. You must be physically located in a state we serve at the time of your evaluation."],
-    ["Which pharmacies fill my prescription?", "US-licensed pharmacies in the MyDose network that are licensed to dispense in your state. Our partner pharmacy is The Pharmacy Hub LLC (Miami, FL), a LegitScript-certified pharmacy."],
+    ["Which pharmacies fill my prescription?", "Prescriptions are filled and shipped by The Pharmacy Hub LLC (Miami, FL), a licensed 503A compounding pharmacy and a LegitScript-certified pharmacy. WellaraMD does not compound or dispense medications."],
     ["What is your refund policy?", "If your provider does not approve a prescription, you are not charged for medication. Because prescription medications cannot be returned once dispensed, orders are generally non-refundable after the pharmacy has filled them. If your order arrives damaged or incorrect, contact us within 14 days of delivery."],
     ["Is my information private?", "Yes. Your health information is protected under HIPAA and applicable state law. We never sell your personal or health information."],
   ].map(([q, a]) => ({
@@ -170,7 +170,7 @@ export default function FaqPage() {
             <h2 className="text-ink text-[1.05rem] font-medium">Important information</h2>
             <div className="muted text-[0.9rem] leading-relaxed mt-3 space-y-3">
               <p>MyDose.ai is a software platform for licensed healthcare providers. It does not diagnose, prescribe, or dispense medication. All prescriptions are issued by independently licensed US physicians based on individual patient evaluation. All medications are dispensed by licensed US pharmacies.</p>
-              <p>Compounded medications are prepared by licensed US compounding pharmacies operating under FDA-regulated 503A or 503B authority. The specific compounded formulation has not undergone separate FDA approval. FDA-approved alternatives may be available; patients should discuss options with their prescribing physician.</p>
+              <p>Compounded medications are prepared by a licensed US 503A compounding pharmacy. The specific compounded formulation has not undergone separate FDA approval. FDA-approved alternatives may be available; patients should discuss options with their prescribing physician.</p>
               <p>Individual results vary. Outcomes depend on adherence to your treatment plan, lifestyle factors, and individual biological response. No specific outcome is guaranteed. All medications carry potential risks and side effects; review your informed consent and discuss any concerns with your physician.</p>
             </div>
           </div>

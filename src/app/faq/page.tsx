@@ -60,7 +60,7 @@ const GROUPS: Group[] = [
   {
     title: "Pharmacies, shipping, and availability",
     items: [
-      { q: "Which pharmacies fill my prescription?", a: "Prescriptions are filled by US-licensed pharmacies in the MyDose network that are licensed to dispense in your state. Our partner pharmacies are Pharmacy Hub and Striker." },
+      { q: "Which pharmacies fill my prescription?", a: "Prescriptions are filled by US-licensed pharmacies in the MyDose network that are licensed to dispense in your state. Our partner pharmacy is The Pharmacy Hub LLC (Miami, FL), a LegitScript-certified pharmacy." },
       { q: "How long does delivery take?", a: "Most orders ship within a few business days after your prescription is approved and arrive in discreet packaging. Some medications ship cold and must be refrigerated on arrival." },
       { q: "Which states do you serve?", a: "Services are available in all 50 states. Availability of specific treatments may vary by state. You must be physically located in a state we serve at the time of your evaluation, and your shipping address must be in a state we serve." },
       { q: "Do you ship internationally?", a: "No. We ship only to addresses in the United States, within the states where our providers and pharmacies are licensed." },
@@ -111,7 +111,7 @@ const FAQ_JSONLD = {
     ["Are these medications FDA-approved?", "Some are FDA-approved medications. Others are compounded medications prepared by licensed US pharmacies under FDA-regulated 503A or 503B authority; the specific compounded formulation has not undergone separate FDA approval. FDA-approved alternatives may be available."],
     ["Do you accept insurance?", "No. Services are self-pay with transparent pricing and no membership or hidden fees. You may be able to use an HSA or FSA card, depending on your plan."],
     ["Which states do you serve?", "All 50 states, though availability of specific treatments may vary by state. You must be physically located in a state we serve at the time of your evaluation."],
-    ["Which pharmacies fill my prescription?", "US-licensed pharmacies in the MyDose network that are licensed to dispense in your state. Our partner pharmacies are Pharmacy Hub and Striker."],
+    ["Which pharmacies fill my prescription?", "US-licensed pharmacies in the MyDose network that are licensed to dispense in your state. Our partner pharmacy is The Pharmacy Hub LLC (Miami, FL), a LegitScript-certified pharmacy."],
     ["What is your refund policy?", "If your provider does not approve a prescription, you are not charged for medication. Because prescription medications cannot be returned once dispensed, orders are generally non-refundable after the pharmacy has filled them. If your order arrives damaged or incorrect, contact us within 14 days of delivery."],
     ["Is my information private?", "Yes. Your health information is protected under HIPAA and applicable state law. We never sell your personal or health information."],
   ].map(([q, a]) => ({

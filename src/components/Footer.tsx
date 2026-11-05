@@ -124,9 +124,9 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* giant wordmark watermark */}
-      <div className="select-none pointer-events-none leading-none -mb-[3vw]">
-        <span className="logo block text-center lowercase text-white/[0.06] text-[26vw]">wellara</span>
+      {/* wordmark watermark */}
+      <div className="select-none pointer-events-none leading-[0.8] -mb-[1.5vw] overflow-hidden">
+        <span className="logo block text-center lowercase text-white/[0.06] text-[13vw]">wellara</span>
       </div>
     </footer>
   );

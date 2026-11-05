@@ -93,6 +93,24 @@ export default function Footer() {
             <a href="/telehealth-consent" className="hover:text-white">Telehealth Consent</a>
             <a href="/" className="hover:text-white">Home</a>
           </div>
+          <div className="mt-8">
+            <a
+              href="https://www.legitscript.com/websites/?checker_keywords=wellaramd.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Verify LegitScript Approval for www.wellaramd.com"
+              className="inline-block"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://static.legitscript.com/seals/52535287.png"
+                alt="LegitScript Certified. Verify approval for www.wellaramd.com"
+                width={73}
+                height={79}
+                loading="lazy"
+              />
+            </a>
+          </div>
           <p className="mt-6 text-white/55 text-[0.8rem] leading-relaxed">
             WellaraMD LLC · 1081 N Tustin Ave, Ste 115, PMB #4026, Anaheim, CA 92807
             <br />

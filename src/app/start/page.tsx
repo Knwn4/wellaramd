@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Product } from "@/components/Visuals";
+import ProductCatalog from "@/components/ProductCatalog";
 import { COMPOUNDER_NOTE } from "@/lib/compliance";
 
 /* ============================================================================
@@ -123,12 +124,14 @@ function Cta({ className = "", label = "Check eligibility" }: { className?: stri
 export default function StartPage() {
   return (
     <main className="bg-ivory text-ink">
-      {/* slim top bar — wordmark only, no nav (paid LP keeps exits low) */}
+      {/* slim top bar — wordmark links home; browse link, but no full nav (keeps exits low) */}
       <header className="mx-auto max-w-[1180px] px-5 lg:px-8 h-20 flex items-center justify-between">
-        <span className="logo text-[1.5rem] tracking-tight">
+        <a href="/" aria-label="WellaraMD home" className="logo text-[1.5rem] tracking-tight hover:opacity-80 transition-opacity">
           wellara<span className="align-super text-[0.62em] ml-[1px]">MD</span>
-        </span>
-        <span className="eyebrow hidden sm:block text-ink-2">Weight care for women</span>
+        </a>
+        <a href="#treatments" className="eyebrow hidden sm:block text-ink-2 hover:text-ink transition-colors">
+          Browse treatments
+        </a>
       </header>
 
       {/* ───────────────── Hero ───────────────── */}
@@ -230,6 +233,9 @@ export default function StartPage() {
         </div>
       </section>
 
+      {/* ───────────────── Browse treatments (full formulary) ───────────────── */}
+      <ProductCatalog />
+
       {/* ───────────────── Why WellaraMD ───────────────── */}
       <section className="border-t border-[var(--line-soft)] bg-sand">
         <div className="mx-auto max-w-[1180px] px-5 lg:px-8 py-16 lg:py-24">
@@ -303,6 +309,8 @@ export default function StartPage() {
             not medical advice.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-ink-2">
+            <a href="/" className="hover:text-ink">Home</a>
+            <a href="/faq" className="hover:text-ink">FAQs</a>
             <a href="/privacy" className="hover:text-ink">Privacy Policy</a>
             <a href="/terms" className="hover:text-ink">Terms</a>
             <a href="/telehealth-consent" className="hover:text-ink">Telehealth Consent</a>

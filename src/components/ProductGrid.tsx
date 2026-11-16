@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Product } from "./Visuals";
 import type { Treatment } from "@/lib/catalog/types";
 import { COMPOUNDED_LABEL, COMPOUNDER_NOTE } from "@/lib/compliance";
@@ -84,6 +84,20 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
     treatments.forEach((t) => t.categories.forEach((c) => present.add(c)));
     return ORDER.filter((c) => present.has(c));
   }, [treatments]);
+
+  // The hero goal selector drives this filter via a window event (no URL coupling).
+  useEffect(() => {
+    function onSet(e: Event) {
+      const cat = (e as CustomEvent).detail?.category as string | undefined;
+      if (!cat) return;
+      if (cat === "all" || cats.includes(cat)) {
+        setActive(cat);
+        setExpanded(false);
+      }
+    }
+    window.addEventListener("wellara:setTreatmentFilter", onSet);
+    return () => window.removeEventListener("wellara:setTreatmentFilter", onSet);
+  }, [cats]);
 
   const filtered = useMemo(
     () =>

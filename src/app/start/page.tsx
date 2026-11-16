@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Product } from "@/components/Visuals";
 import ProductCatalog from "@/components/ProductCatalog";
+import GoalSelector from "@/components/GoalSelector";
+import TrustTicker from "@/components/TrustTicker";
 import { COMPOUNDER_NOTE } from "@/lib/compliance";
 
 /* ============================================================================
@@ -108,6 +110,29 @@ const FAQ = [
   },
 ];
 
+/* The social-proof slot. hims runs before/after photos + paid testimonials here.
+   For a new GLP-1 brand under LegitScript, fabricated results/reviews are an FTC
+   and LegitScript problem, so this is an EDUCATIONAL "what to expect" timeline,
+   not a results claim. Swap in real, verified reviews (with disclaimers) if we get
+   them. Do NOT add before/after imagery or outcome promises. */
+const EXPECT = [
+  {
+    n: "Weeks 1–4",
+    t: "Start low, settle in",
+    d: "Most plans begin at a low dose so your body can adjust. Your care team is a message away for any side effects or questions.",
+  },
+  {
+    n: "Months 2–3",
+    t: "Find your rhythm",
+    d: "Your provider reviews how you are doing and adjusts your plan where clinically appropriate. Progress looks different for everyone.",
+  },
+  {
+    n: "Ongoing",
+    t: "Care that keeps up",
+    d: "Refills, check-ins, and adjustments continue through your portal for as long as treatment is right for you.",
+  },
+];
+
 function Cta({ className = "", label = "Check eligibility" }: { className?: string; label?: string }) {
   return (
     <a
@@ -147,7 +172,12 @@ export default function StartPage() {
               licensed, US-based providers and delivered to your door.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+            {/* hims-style goal selector — self-selects a path into the grid */}
+            <div className="mt-8">
+              <GoalSelector />
+            </div>
+
+            <div className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
               <Cta />
               <span className="text-[0.86rem] text-muted">
                 {HERO.priceFrom
@@ -189,6 +219,65 @@ export default function StartPage() {
         </div>
       </section>
 
+      {/* ───────────────── Trust momentum strip ───────────────── */}
+      <TrustTicker />
+
+      {/* ───────────────── Treatment options (grid, goal-driven) ─────────────────
+          hims shows options first. This is the full formulary, pre-filtered by the
+          hero goal selector. #treatments is the scroll + filter target. */}
+      <ProductCatalog />
+
+      {/* ───────────────── What's included (value stack) ───────────────── */}
+      <section className="border-t border-[var(--line-soft)] bg-ivory2">
+        <div className="mx-auto max-w-[1180px] px-5 lg:px-8 py-16 lg:py-24">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-center">
+            <div>
+              <p className="eyebrow text-ink-2 mb-4">What you get</p>
+              <h2 className="display text-[2rem] lg:text-[2.6rem] max-w-[16ch]">
+                One price. Everything handled.
+              </h2>
+              <p className="mt-5 text-ink-2 leading-relaxed max-w-[26rem]">
+                No clinic visits, no insurance paperwork, no guesswork. Care that
+                comes to you and adjusts as your body changes.
+              </p>
+              <Cta className="mt-8" />
+            </div>
+            <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+              {INCLUDED.map((item) => (
+                <li key={item} className="flex gap-3 text-[0.98rem] text-ink-2 leading-snug">
+                  <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-ink shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────────────── What to expect (reviews slot — compliant) ─────────────
+          hims puts before/after testimonials here. We use an educational timeline
+          instead (see EXPECT). No outcome promises, no before/after imagery. */}
+      <section className="mx-auto max-w-[1180px] px-5 lg:px-8 py-16 lg:py-24">
+        <p className="eyebrow text-ink-2 mb-4">What to expect</p>
+        <h2 className="display text-[2rem] lg:text-[2.6rem] max-w-[20ch]">
+          A plan that moves at your pace.
+        </h2>
+        <div className="mt-12 grid md:grid-cols-3 gap-8 lg:gap-12">
+          {EXPECT.map((s) => (
+            <div key={s.n} className="border-t border-[var(--line)] pt-5">
+              <span className="eyebrow text-muted">{s.n}</span>
+              <h3 className="display text-[1.3rem] mt-3">{s.t}</h3>
+              <p className="mt-3 text-[0.98rem] leading-relaxed text-ink-2">{s.d}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-10 text-[0.82rem] text-muted max-w-[46rem]">
+          Individual results vary. A licensed provider decides whether any treatment
+          is appropriate for you, and not everyone is approved. This is general
+          information, not medical advice.
+        </p>
+      </section>
+
       {/* ───────────────── How it works ───────────────── */}
       <section className="border-t border-[var(--line-soft)] bg-ivory2">
         <div className="mx-auto max-w-[1180px] px-5 lg:px-8 py-16 lg:py-24">
@@ -208,34 +297,6 @@ export default function StartPage() {
         </div>
       </section>
 
-      {/* ───────────────── What's included ───────────────── */}
-      <section className="mx-auto max-w-[1180px] px-5 lg:px-8 py-16 lg:py-24">
-        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-center">
-          <div>
-            <p className="eyebrow text-ink-2 mb-4">What you get</p>
-            <h2 className="display text-[2rem] lg:text-[2.6rem] max-w-[16ch]">
-              One price. Everything handled.
-            </h2>
-            <p className="mt-5 text-ink-2 leading-relaxed max-w-[26rem]">
-              No clinic visits, no insurance paperwork, no guesswork. Care that
-              comes to you and adjusts as your body changes.
-            </p>
-            <Cta className="mt-8" />
-          </div>
-          <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
-            {INCLUDED.map((item) => (
-              <li key={item} className="flex gap-3 text-[0.98rem] text-ink-2 leading-snug">
-                <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-ink shrink-0" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ───────────────── Browse treatments (full formulary) ───────────────── */}
-      <ProductCatalog />
-
       {/* ───────────────── Why WellaraMD ───────────────── */}
       <section className="border-t border-[var(--line-soft)] bg-sand">
         <div className="mx-auto max-w-[1180px] px-5 lg:px-8 py-16 lg:py-24">
@@ -248,17 +309,6 @@ export default function StartPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ───────────────── Trust band ───────────────── */}
-      <section className="mx-auto max-w-[1180px] px-5 lg:px-8 py-10">
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center eyebrow text-muted">
-          <span>Licensed US providers</span>
-          <span className="h-1 w-1 rounded-full bg-[var(--line)]" />
-          <span>US-licensed pharmacies</span>
-          <span className="h-1 w-1 rounded-full bg-[var(--line)]" />
-          <span>Private &amp; discreet</span>
         </div>
       </section>
 

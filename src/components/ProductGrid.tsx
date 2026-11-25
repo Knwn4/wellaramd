@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Product } from "./Visuals";
 import type { Treatment } from "@/lib/catalog/types";
 import { COMPOUNDED_LABEL, COMPOUNDER_NOTE } from "@/lib/compliance";
-
-type ProductName = "pen" | "vial" | "dropper" | "capsules" | "labkit";
 
 const LABELS: Record<string, string> = {
   "weight-loss": "Weight & Metabolic",
@@ -62,14 +59,20 @@ function tintFor(t: Treatment) {
   return TINT[c] ?? DEFAULT_TINT;
 }
 
-function renderFor(t: Treatment): ProductName {
+/* Realistic product vials with a GENERIC MOLECULE label (drug name + Rx only).
+   LegitScript note: no "Wellara" brand on the vial, and the card keeps the
+   "Compounded · Not FDA-approved" line + compounder note. Images are unbranded
+   stock-style renders shared with the Club Cheat Code catalog. */
+function imageFor(t: Treatment): string {
   const n = t.name.toLowerCase();
-  const forms = (t.forms ?? []).map((f) => f.form.toLowerCase());
-  if (/semaglutide|tirzepatide|retatrutide|glp/.test(n)) return "pen";
-  if (forms.includes("oral")) return "capsules";
-  if (forms.includes("sublingual") || forms.includes("topical")) return "dropper";
-  if (/nad|b12|glutathione/.test(n)) return "capsules";
-  return "vial";
+  if (/semaglutide/.test(n)) return "/products/label-semaglutide.png";
+  if (/tirzepatide/.test(n)) return "/products/label-tirzepatide.png";
+  if (/methylcobalamin|b-?12/.test(n)) return "/products/label-b12.png";
+  if (/glutathione/.test(n)) return "/products/label-glutathione.png";
+  if (/sermorelin/.test(n)) return "/products/label-sermorelin.png";
+  if (/pt-?141/.test(n)) return "/products/label-pt141.png";
+  if (/nad/.test(n)) return "/products/label-nad.png";
+  return "/products/label-semaglutide.png";
 }
 
 /** "Injectable · Sublingual" etc. */
@@ -204,10 +207,12 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
                   <span className="absolute top-3.5 right-3.5 z-10 font-mono text-[0.6rem] uppercase tracking-wider text-ink-2/70">
                     Rx
                   </span>
-                  <Product
-                    name={renderFor(t)}
-                    float={false}
-                    className="h-[82%] w-[66%] object-contain transition-transform duration-500 group-hover:scale-[1.06] drop-shadow-[0_18px_30px_-16px_rgba(34,34,34,0.45)]"
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={imageFor(t)}
+                    alt={t.name}
+                    loading="lazy"
+                    className="h-[88%] w-auto max-w-[62%] object-contain transition-transform duration-500 group-hover:scale-[1.06] drop-shadow-[0_20px_30px_-16px_rgba(34,34,34,0.5)]"
                   />
                 </div>
 

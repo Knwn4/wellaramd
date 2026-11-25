@@ -1,19 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { Product } from "./Visuals";
 import type { Treatment } from "@/lib/catalog/types";
 import { COMPOUNDED_LABEL, COMPOUNDER_NOTE } from "@/lib/compliance";
-
-type ProductName = "pen" | "vial" | "dropper" | "capsules" | "labkit";
-
-function renderFor(t: Treatment): ProductName {
-  const n = t.name.toLowerCase();
-  if (/semaglutide|tirzepatide|retatrutide|glp|lipo/.test(n)) return "pen";
-  if (/nad|b12|glutathione/.test(n)) return "capsules";
-  if (/dsip|epithalon|selank|semax/.test(n)) return "dropper";
-  return "vial";
-}
+import { productImage } from "@/lib/productImage";
 
 /** Short all-caps descriptor under the product name. */
 function descriptorFor(t: Treatment): string {
@@ -131,12 +121,14 @@ export default function CategoryRow({
                   )}
                 </div>
 
-                {/* product */}
+                {/* product — same labelled vial as the formulary grid */}
                 <div className="relative h-[210px] flex items-center justify-center px-5">
-                  <Product
-                    name={renderFor(t)}
-                    float={false}
-                    className="h-[88%] w-[64%] object-contain transition-transform duration-500 group-hover:scale-105"
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={productImage(t)}
+                    alt={t.name}
+                    loading="lazy"
+                    className="h-[90%] w-auto max-w-[62%] object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_18px_28px_-16px_rgba(34,34,34,0.4)]"
                   />
                 </div>
 

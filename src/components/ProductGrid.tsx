@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Treatment } from "@/lib/catalog/types";
 import { COMPOUNDED_LABEL, COMPOUNDER_NOTE } from "@/lib/compliance";
+import { productImage } from "@/lib/productImage";
 
 const LABELS: Record<string, string> = {
   "weight-loss": "Weight & Metabolic",
@@ -57,22 +58,6 @@ const DEFAULT_TINT = { bg: "#F0EEE7", ink: "#5E5A4E" };
 function tintFor(t: Treatment) {
   const c = ORDER.find((o) => t.categories.includes(o)) ?? t.categories[0];
   return TINT[c] ?? DEFAULT_TINT;
-}
-
-/* Realistic product vials with a GENERIC MOLECULE label (drug name + Rx only).
-   LegitScript note: no "Wellara" brand on the vial, and the card keeps the
-   "Compounded · Not FDA-approved" line + compounder note. Images are unbranded
-   stock-style renders shared with the Club Cheat Code catalog. */
-function imageFor(t: Treatment): string {
-  const n = t.name.toLowerCase();
-  if (/semaglutide/.test(n)) return "/products/label-semaglutide.png";
-  if (/tirzepatide/.test(n)) return "/products/label-tirzepatide.png";
-  if (/methylcobalamin|b-?12/.test(n)) return "/products/label-b12.png";
-  if (/glutathione/.test(n)) return "/products/label-glutathione.png";
-  if (/sermorelin/.test(n)) return "/products/label-sermorelin.png";
-  if (/pt-?141/.test(n)) return "/products/label-pt141.png";
-  if (/nad/.test(n)) return "/products/label-nad.png";
-  return "/products/label-semaglutide.png";
 }
 
 /** "Injectable · Sublingual" etc. */
@@ -209,7 +194,7 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
                   </span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={imageFor(t)}
+                    src={productImage(t)}
                     alt={t.name}
                     loading="lazy"
                     className="h-[88%] w-auto max-w-[62%] object-contain transition-transform duration-500 group-hover:scale-[1.06] drop-shadow-[0_20px_30px_-16px_rgba(34,34,34,0.5)]"

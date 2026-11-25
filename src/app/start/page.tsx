@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Product } from "@/components/Visuals";
 import ProductCatalog from "@/components/ProductCatalog";
 import GoalSelector from "@/components/GoalSelector";
 import TrustTicker from "@/components/TrustTicker";
@@ -204,9 +203,10 @@ export default function StartPage() {
                 className="object-cover"
               />
             </div>
-            {/* floating product render */}
-            <div className="hidden sm:block absolute -left-4 lg:-left-8 bottom-10 w-[150px] lg:w-[180px] drop-shadow-[0_24px_48px_-24px_rgba(20,20,20,0.5)]">
-              <Product name="dropper" float={false} className="w-full h-auto" />
+            {/* floating product render — realistic vial, matches the formulary */}
+            <div className="hidden sm:block absolute -left-4 lg:-left-8 bottom-6 w-[120px] lg:w-[140px] drop-shadow-[0_28px_48px_-20px_rgba(20,20,20,0.6)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/products/hero-vial.png" alt="" aria-hidden className="w-full h-auto" />
             </div>
             {/* floating trust card */}
             <div className="hidden sm:flex absolute -right-3 lg:-right-6 top-8 items-center gap-3 bg-ivory2 border border-[var(--line-soft)] rounded-2xl px-4 py-3 shadow-[0_24px_48px_-28px_rgba(20,20,20,0.4)]">

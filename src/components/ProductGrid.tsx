@@ -37,6 +37,31 @@ const ORDER = [
   "gut-health",
 ];
 
+/* Per-category tinted product stage (the Club Cheat Code move). Muted, warm,
+   feminine pastels that stay inside WellaraMD's luxury palette — they give the
+   grid colour variety and make the vial pop instead of washing out on cream.
+   bg = stage behind the product, ink = the category pill text on that stage. */
+const TINT: Record<string, { bg: string; ink: string }> = {
+  "weight-loss": { bg: "#EFE6E3", ink: "#7B574E" }, // warm rose-taupe
+  "hormones-women": { bg: "#F0E7EC", ink: "#7C566A" }, // soft rose
+  "hormones-men": { bg: "#E9EDEF", ink: "#51636B" }, // cool stone
+  longevity: { bg: "#E8EEE6", ink: "#51664F" }, // soft sage
+  recovery: { bg: "#F1EADF", ink: "#796A4C" }, // warm sand
+  performance: { bg: "#E8ECEF", ink: "#53636C" }, // slate
+  sleep: { bg: "#E8E9F1", ink: "#565A7C" }, // dusk
+  "sexual-health": { bg: "#EFE5EB", ink: "#7A5570" }, // muted mauve
+  energy: { bg: "#F4EADD", ink: "#886843" }, // warm peach
+  focus: { bg: "#EAE7F1", ink: "#5E5880" }, // lavender
+  immunity: { bg: "#E6EEEB", ink: "#4D675F" }, // eucalyptus
+  "gut-health": { bg: "#ECEAE0", ink: "#6B6646" }, // olive
+};
+const DEFAULT_TINT = { bg: "#F0EEE7", ink: "#5E5A4E" };
+
+function tintFor(t: Treatment) {
+  const c = ORDER.find((o) => t.categories.includes(o)) ?? t.categories[0];
+  return TINT[c] ?? DEFAULT_TINT;
+}
+
 function renderFor(t: Treatment): ProductName {
   const n = t.name.toLowerCase();
   const forms = (t.forms ?? []).map((f) => f.form.toLowerCase());
@@ -157,6 +182,7 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
             const multi = (t.forms?.length ?? 0) > 1;
             const href = intakeHref(t);
             const external = href.startsWith("http");
+            const tint = tintFor(t);
             return (
               <a
                 key={t.id}
@@ -164,35 +190,47 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="press group rounded-[var(--r)] bg-ivory2 border border-[var(--line-soft)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_28px_56px_-32px_rgba(20,20,20,0.4)]"
               >
-                <div className="relative h-[230px] lg:h-[260px] flex items-center justify-center bg-ivoryCard/60">
-                  <span className="absolute top-4 left-4 font-mono text-[0.6rem] uppercase tracking-wider border border-[var(--line)] rounded px-1.5 py-0.5 text-ink-2">
+                {/* Tinted product stage — the per-category colour that gives the grid life */}
+                <div
+                  className="relative h-[230px] lg:h-[250px] flex items-center justify-center overflow-hidden"
+                  style={{ background: tint.bg }}
+                >
+                  <span
+                    className="absolute top-3.5 left-3.5 z-10 rounded-full bg-white/70 backdrop-blur-sm px-2.5 py-1 font-mono text-[0.56rem] uppercase tracking-wider"
+                    style={{ color: tint.ink }}
+                  >
+                    {primaryLabel(t)}
+                  </span>
+                  <span className="absolute top-3.5 right-3.5 z-10 font-mono text-[0.6rem] uppercase tracking-wider text-ink-2/70">
                     Rx
                   </span>
-                  {formsLabel(t) && (
-                    <span className="absolute top-4 right-4 font-mono text-[0.58rem] uppercase tracking-wider text-ink-2/70">
-                      {formsLabel(t)}
-                    </span>
-                  )}
                   <Product
                     name={renderFor(t)}
                     float={false}
-                    className="h-[88%] w-[70%] object-contain transition-transform duration-500 group-hover:scale-105"
+                    className="h-[82%] w-[66%] object-contain transition-transform duration-500 group-hover:scale-[1.06] drop-shadow-[0_18px_30px_-16px_rgba(34,34,34,0.45)]"
                   />
                 </div>
 
                 <div className="p-5 flex flex-col flex-1">
-                  <div className="eyebrow text-ink-2/70">{primaryLabel(t)}</div>
-                  <h3 className="text-ink font-medium text-[1.05rem] mt-2 leading-tight">
+                  <h3 className="text-ink font-medium text-[1.05rem] leading-tight">
                     {t.name}
                   </h3>
-                  {t.compounded && (
-                    <span className="mt-2 w-fit rounded-full border border-[var(--line)] px-2 py-0.5 text-[0.6rem] uppercase tracking-wider text-ink-2">
-                      {COMPOUNDED_LABEL}
-                    </span>
-                  )}
 
-                  <div className="mt-auto pt-4 flex items-baseline justify-between">
-                    <span className="text-ink text-[1rem] font-medium">
+                  <div className="mt-3 flex flex-wrap items-center gap-2 text-[0.64rem]">
+                    {formsLabel(t) && (
+                      <span className="rounded-full bg-sand px-2 py-0.5 font-medium text-ink-2 ring-1 ring-[var(--line-soft)]">
+                        {formsLabel(t)}
+                      </span>
+                    )}
+                    {t.compounded && (
+                      <span className="rounded-full border border-[var(--line)] px-2 py-0.5 uppercase tracking-wider text-ink-2">
+                        {COMPOUNDED_LABEL}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="mt-auto pt-4 flex items-end justify-between">
+                    <span className="text-ink text-[1.05rem] font-medium">
                       {t.priceMonthly !== null ? (
                         <>
                           {multi && <span className="muted text-[0.72rem] font-normal">from </span>}
@@ -203,8 +241,10 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
                         <span className="muted text-[0.85rem]">At consultation</span>
                       )}
                     </span>
-                    <span className="font-mono text-[0.62rem] text-ink-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      Start →
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink/[0.06] text-ink transition group-hover:bg-ink group-hover:text-ivory">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2">
+                        <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
                     </span>
                   </div>
 

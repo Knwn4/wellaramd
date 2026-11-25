@@ -2,40 +2,15 @@
 
 import { useRef } from "react";
 import type { Treatment } from "@/lib/catalog/types";
-import { COMPOUNDED_LABEL, COMPOUNDER_NOTE } from "@/lib/compliance";
-import { productImage } from "@/lib/productImage";
+import { COMPOUNDER_NOTE } from "@/lib/compliance";
+import { ProtocolCard } from "@/components/ProtocolGroup";
 
-/** Short all-caps descriptor under the product name. */
-function descriptorFor(t: Treatment): string {
-  const n = t.name.toLowerCase();
-  if (/tirzepatide/.test(n)) return "GLP-1 + GIP injection";
-  if (/semaglutide/.test(n)) return "GLP-1 injection";
-  if (/retatrutide/.test(n)) return "Next-generation GLP-1";
-  if (/nad\+/.test(n)) return "Cellular energy support";
-  if (/glutathione/.test(n)) return "Antioxidant, immune support";
-  if (/b12|methylcobalamin/.test(n)) return "Energy and mood support";
-  if (/sermorelin|tesamorelin|ipamorelin|cjc/.test(n)) return "Longevity peptide";
-  if (/bpc|tb-500/.test(n)) return "Recovery and tissue repair";
-  if (/epithalon/.test(n)) return "Longevity peptide";
-  if (/ghk/.test(n)) return "Skin and collagen support";
-  if (/kisspeptin|gonadorelin/.test(n)) return "Hormone signalling support";
-  if (/dsip/.test(n)) return "Sleep support peptide";
-  if (/dihexa|semax|selank/.test(n)) return "Cognitive support peptide";
-  if (/mots-c|5-amino/.test(n)) return "Metabolic support peptide";
-  if (/thymosin/.test(n)) return "Immune support peptide";
-  return "Physician prescribed";
-}
-
-/** Where "Get started" sends the patient: direct booking link → intake base → on-page CTA. */
-function intakeHref(t: Treatment): string {
-  if (t.formUrl && t.formUrl.length > 0) return t.formUrl;
-  const base = process.env.NEXT_PUBLIC_MYDOSE_INTAKE_URL;
-  if (base && t.intakeFormId) {
-    return `${base}${base.includes("?") ? "&" : "?"}form=${t.intakeFormId}`;
-  }
-  return "#evaluation";
-}
-
+/**
+ * Homepage category row — the cinematic image banner with a horizontal-scroll
+ * carousel of products overlapping it. The product boxes are the shared tinted
+ * ProtocolCard (same as /peptides), so the two surfaces read identically. Each
+ * card routes to its MyDose booking link, firing the site-wide neutral Lead.
+ */
 export default function CategoryRow({
   index,
   title,
@@ -43,6 +18,7 @@ export default function CategoryRow({
   treatments,
   ctaLabel,
   bgImage,
+  tint,
 }: {
   index: string;
   title: string;
@@ -50,6 +26,7 @@ export default function CategoryRow({
   treatments: Treatment[];
   ctaLabel: string;
   bgImage: string;
+  tint: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const scrollBy = (dir: number) =>
@@ -91,81 +68,20 @@ export default function CategoryRow({
           </div>
         </div>
 
-        {/* Product cards overlapping the image */}
+        {/* Product cards overlapping the image — tinted peptides-style boxes */}
         <div className="relative z-10 -mt-[150px] lg:-mt-[170px]">
           <div
             ref={ref}
             className="no-scrollbar flex gap-4 overflow-x-auto snap-x snap-mandatory px-5 lg:px-8 pb-2 mx-auto max-w-[1440px]"
           >
-            {treatments.map((t) => {
-              const href = intakeHref(t);
-              const external = href.startsWith("http");
-              return (
-              <article
+            {treatments.map((t) => (
+              <ProtocolCard
                 key={t.id}
-                className="group shrink-0 snap-start w-[270px] sm:w-[300px] rounded-2xl bg-ivory2 border border-[var(--line-soft)] shadow-[0_28px_56px_-32px_rgba(20,20,20,0.45)] overflow-hidden flex flex-col"
-              >
-                {/* header */}
-                <div className="px-5 pt-5">
-                  <h3 className="text-ink text-[1.02rem] font-medium leading-tight">
-                    {t.name}
-                    <sup className="ml-1 font-mono text-[0.58rem] text-ink-2">Rx</sup>
-                  </h3>
-                  <p className="eyebrow text-ink-2/70 mt-1.5 leading-snug">
-                    {descriptorFor(t)}
-                  </p>
-                  {t.compounded && (
-                    <span className="mt-2 inline-block w-fit rounded-full border border-[var(--line)] px-2 py-0.5 text-[0.58rem] uppercase tracking-wider text-ink-2">
-                      {COMPOUNDED_LABEL}
-                    </span>
-                  )}
-                </div>
-
-                {/* product — same labelled vial as the formulary grid */}
-                <div className="relative h-[210px] flex items-center justify-center px-5">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={productImage(t)}
-                    alt={t.name}
-                    loading="lazy"
-                    className="h-[90%] w-auto max-w-[62%] object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_18px_28px_-16px_rgba(34,34,34,0.4)]"
-                  />
-                </div>
-
-                {/* price */}
-                <div className="px-5 pb-4 flex items-baseline gap-2">
-                  {t.priceMonthly !== null && (
-                    <span className="text-ink text-[1rem] font-medium">
-                      ${Number.isInteger(t.priceMonthly) ? t.priceMonthly.toLocaleString() : t.priceMonthly.toFixed(2)}
-                      <span className="muted text-[0.72rem] font-normal"> / mo</span>
-                    </span>
-                  )}
-                  {t.discounts.length > 0 && (
-                    <span className="font-mono text-[0.6rem] rounded-full px-2 py-0.5 border border-[var(--line)] text-ink-2">
-                      −{Math.max(...t.discounts.map((d) => d.percent))}%
-                    </span>
-                  )}
-                </div>
-
-                {t.compounded && (
-                  <p className="px-5 pb-3 text-[0.58rem] leading-snug text-ink-2/60">
-                    {COMPOUNDER_NOTE}
-                  </p>
-                )}
-
-                {/* footer — single CTA to the product's booking page */}
-                <div className="mt-auto border-t border-[var(--line-soft)]">
-                  <a
-                    href={href}
-                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="block py-3.5 text-center text-[0.85rem] font-medium bg-ink text-ivory hover:bg-ink-2 transition-colors"
-                  >
-                    Get started
-                  </a>
-                </div>
-              </article>
-              );
-            })}
+                t={t}
+                tint={tint}
+                className="shrink-0 snap-start w-[260px] sm:w-[290px] shadow-[0_24px_48px_-28px_rgba(20,20,20,0.35)]"
+              />
+            ))}
           </div>
 
           <div className="mx-auto max-w-[1440px] px-5 lg:px-8 mt-8 flex items-center justify-between">
@@ -187,6 +103,11 @@ export default function CategoryRow({
               </button>
             </div>
           </div>
+
+          {/* Compounder note (kept from the old card, now once per row) */}
+          <p className="mx-auto max-w-[1440px] px-5 lg:px-8 mt-4 text-[0.72rem] leading-relaxed text-ink-2/55">
+            {COMPOUNDER_NOTE}
+          </p>
         </div>
       </div>
     </section>

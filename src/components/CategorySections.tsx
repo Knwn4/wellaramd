@@ -10,6 +10,7 @@ const GROUPS = [
     blurb:
       "GLP-1 and metabolic therapies, prescribed and monitored by a physician who follows your progress.",
     ctaLabel: "Explore weight care",
+    tint: "linear-gradient(180deg,#EFE7EE,#DECEDB)",
   },
   {
     index: "02",
@@ -19,6 +20,7 @@ const GROUPS = [
     blurb:
       "Cellular energy, recovery, and healthy-aging protocols built to keep you feeling like yourself.",
     ctaLabel: "Explore longevity",
+    tint: "linear-gradient(180deg,#EDF2EA,#DBE7D2)",
   },
 ];
 
@@ -35,6 +37,7 @@ export default async function CategorySections() {
           blurb={g.blurb}
           ctaLabel={g.ctaLabel}
           bgImage={g.bgImage}
+          tint={g.tint}
           treatments={treatments.filter((t) => t.categories.includes(g.slug)).slice(0, 10)}
         />
       ))}

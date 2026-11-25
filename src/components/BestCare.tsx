@@ -18,7 +18,7 @@ export default function BestCare() {
             </h2>
 
             <div className="mt-8 pt-6 border-t border-[var(--line)] max-w-md">
-              <p className="eyebrow text-ink-2">Physician led, never a call center</p>
+              <p className="eyebrow-s text-ink-2">Physician led, never a call center</p>
               <p className="muted text-[1rem] mt-4 leading-relaxed">
                 Behind every detail is a network of licensed, US-based providers who
                 review your intake, prescribe only what is appropriate for you, and

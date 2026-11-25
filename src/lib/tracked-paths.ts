@@ -8,11 +8,11 @@
  * Product pages stay untracked; paid traffic lands on /start.
  *
  * WellaraMD routes: "/" is the one-page storefront (all booking CTAs live here),
- * "/start" is reserved for the future paid landing page, "/faq" is neutral.
- * The legal pages (/privacy, /terms, /telehealth) are noindex and carry no
- * booking CTAs, so they stay off this list and load no tags.
+ * "/start" is the paid weight/metabolic LP, "/peptides" is the paid peptide LP,
+ * "/faq" is neutral. The legal pages (/privacy, /terms, /telehealth) are noindex
+ * and carry no booking CTAs, so they stay off this list and load no tags.
  */
-const TRACKED = [/^\/$/, /^\/start\/?$/, /^\/faq\/?$/];
+const TRACKED = [/^\/$/, /^\/start\/?$/, /^\/peptides\/?$/, /^\/faq\/?$/];
 
 export function isTrackedPath(path: string): boolean {
   return TRACKED.some((r) => r.test(path));

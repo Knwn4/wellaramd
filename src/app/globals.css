@@ -101,6 +101,14 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+/* Clean sans eyebrow — used on /peptides so labels read modern, not monospace. */
+.eyebrow-s {
+  font-family: var(--font-grotesk), Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 .muted { color: var(--muted); }
 .gold-rule { width: 42px; height: 1px; background: var(--gold); display: inline-block; }
 

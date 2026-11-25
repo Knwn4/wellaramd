@@ -23,6 +23,13 @@ const PROPS = [
   },
 ];
 
+const TINTS = [
+  "linear-gradient(180deg,#EDF2EA,#DDE8D5)", // sage
+  "linear-gradient(180deg,#F5ECDF,#ECDFCB)", // peach
+  "linear-gradient(180deg,#F2E8EE,#E7D6E0)", // rose
+  "linear-gradient(180deg,#E8F0EC,#D8E7DE)", // eucalyptus
+];
+
 export default function ValueProps() {
   return (
     <section className="bg-ivory py-12 lg:py-24 border-t border-[var(--line-soft)]">
@@ -30,11 +37,11 @@ export default function ValueProps() {
         {/* Top: copy + supporting image */}
         <div className="grid lg:grid-cols-[1fr_0.85fr] gap-10 lg:gap-16 items-center">
           <Reveal>
-            <span className="eyebrow text-ink-2">Why WellaraMD</span>
+            <span className="eyebrow-s text-ink-2">Why WellaraMD</span>
             <h2 className="display text-ink text-[2.4rem] lg:text-[3.4rem] leading-[1.03] mt-4">
-              Bringing modern women's care home,
+              Bringing modern women&rsquo;s care home,
               <br />
-              <span className="display-i">100% online.</span>
+              <span style={{ color: "#5E7350" }}>100% online.</span>
             </h2>
             <p className="muted text-[1.05rem] mt-6 max-w-md leading-relaxed">
               Most women are told their labs are &ldquo;normal&rdquo; and sent
@@ -42,25 +49,26 @@ export default function ValueProps() {
               with you as your body changes.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#evaluation" className="btn btn-ink">Find your treatment</a>
+              <a href="#treatments" className="btn btn-ink">Find your treatment</a>
               <a href="#how-it-works" className="btn btn-outline-dark">How it works</a>
             </div>
           </Reveal>
 
           <Reveal delay={120}>
             <div className="relative">
-              <div className="rounded-[var(--r)] overflow-hidden aspect-[4/5] lg:aspect-[4/4.6]">
+              <div
+                className="rounded-[var(--r)] overflow-hidden aspect-[4/5] lg:aspect-[4/4.6]"
+                style={{ background: TINTS[0] }}
+              >
                 <img
-                  src="/lifestyle/women.jpg"
-                  alt=""
-                  aria-hidden
-                  className="w-full h-full object-cover"
-                  style={{ filter: "grayscale(0.88) sepia(0.1)" }}
+                  src="/lifestyle/pep-longevity.png"
+                  alt="A woman at ease"
+                  className="w-full h-full object-cover object-[50%_22%]"
                 />
               </div>
               {/* small stat card */}
               <div className="absolute -bottom-5 -left-4 sm:-left-6 bg-ivory2 border border-[var(--line)] rounded-2xl px-5 py-4 shadow-[0_24px_48px_-28px_rgba(20,20,20,0.4)]">
-                <p className="eyebrow text-ink-2/70">Typical timeline</p>
+                <p className="eyebrow-s text-ink-2/70">Typical timeline</p>
                 <p className="display text-ink text-[1.9rem] mt-1.5 leading-none">
                   3&ndash;5 days
                 </p>
@@ -72,14 +80,16 @@ export default function ValueProps() {
           </Reveal>
         </div>
 
-        {/* Bottom: value props with icons */}
-        <div className="mt-16 lg:mt-24 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+        {/* Bottom: value props as soft tinted cards (matches the protocol cards) */}
+        <div className="mt-16 lg:mt-24 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
           {PROPS.map((p, i) => (
             <Reveal key={p.title} delay={i * 80}>
-              <div className="border-t border-ink pt-5">
-                <span className="text-ink block mb-4">{p.icon}</span>
-                <h3 className="text-ink text-[1.05rem] font-medium">{p.title}</h3>
-                <p className="muted text-[0.92rem] mt-2.5 leading-relaxed">{p.body}</p>
+              <div className="h-full rounded-[var(--r)] p-6" style={{ background: TINTS[i % TINTS.length] }}>
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/70 text-ink mb-5">
+                  {p.icon}
+                </span>
+                <h3 className="text-ink text-[1.08rem] font-medium">{p.title}</h3>
+                <p className="text-ink-2 text-[0.92rem] mt-2.5 leading-relaxed">{p.body}</p>
               </div>
             </Reveal>
           ))}

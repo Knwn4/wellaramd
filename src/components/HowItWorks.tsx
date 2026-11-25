@@ -23,7 +23,7 @@ export default function HowItWorks() {
     <section id="how-it-works" className="bg-ink text-ivory py-14 lg:py-28">
       <div className="mx-auto max-w-[1440px] px-5 lg:px-8">
         <Reveal className="mb-14">
-          <span className="eyebrow text-ivory/60">How it works</span>
+          <span className="eyebrow-s text-ivory/60">How it works</span>
           <h2 className="display text-ivory text-[2.4rem] lg:text-[3.4rem] leading-[1.03] mt-3 max-w-2xl">
             A quick, guided path to treatment.
           </h2>
@@ -46,7 +46,7 @@ export default function HowItWorks() {
         </div>
 
         <div className="mt-14">
-          <a href="#evaluation" className="btn btn-light">Find your treatment</a>
+          <a href="#treatments" className="btn btn-light">Find your treatment</a>
         </div>
       </div>
     </section>

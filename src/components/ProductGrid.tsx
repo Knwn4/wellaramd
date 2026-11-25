@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Treatment } from "@/lib/catalog/types";
-import { COMPOUNDED_LABEL, COMPOUNDER_NOTE } from "@/lib/compliance";
-import { productImage } from "@/lib/productImage";
+import { COMPOUNDER_NOTE } from "@/lib/compliance";
+import { ProtocolCard } from "@/components/ProtocolGroup";
 
 const LABELS: Record<string, string> = {
   "weight-loss": "Weight & Metabolic",
@@ -60,30 +60,10 @@ function tintFor(t: Treatment) {
   return TINT[c] ?? DEFAULT_TINT;
 }
 
-/** "Injectable · Sublingual" etc. */
-function formsLabel(t: Treatment): string | null {
-  if (!t.forms || t.forms.length === 0) return null;
-  return t.forms.map((f) => f.form).join(" · ");
-}
-
-/**
- * Where "Start" sends the patient. Priority:
- *   1. an explicit per-product formUrl (if ever set)
- *   2. the MyDose Open-Intake base URL + this product's intake form id
- *   3. the on-page evaluation CTA (until the base URL is configured)
- */
-function intakeHref(t: Treatment): string {
-  if (t.formUrl && t.formUrl.length > 0) return t.formUrl;
-  const base = process.env.NEXT_PUBLIC_MYDOSE_INTAKE_URL;
-  if (base && t.intakeFormId) {
-    return `${base}${base.includes("?") ? "&" : "?"}form=${t.intakeFormId}`;
-  }
-  return "#evaluation";
-}
-
-function primaryLabel(t: Treatment): string {
-  const c = ORDER.find((o) => t.categories.includes(o)) ?? t.categories[0];
-  return LABELS[c] ?? "Physician prescribed";
+/** A soft vertical gradient from the category tint, matching the /peptides cards. */
+function gradientFor(t: Treatment): string {
+  const { bg } = tintFor(t);
+  return `linear-gradient(180deg, color-mix(in srgb, ${bg} 45%, #ffffff), ${bg})`;
 }
 
 const PAGE = 12;
@@ -128,7 +108,7 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
         {/* Header — headline left, filters right on desktop */}
         <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-end mb-10">
           <div>
-            <span className="eyebrow text-ink-2">The Formulary</span>
+            <span className="eyebrow-s text-ink-2">The Formulary</span>
             <h2 className="display text-ink text-[2.6rem] lg:text-[3.8rem] leading-[1.03] mt-3">
               Explore every treatment.
             </h2>
@@ -164,89 +144,11 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
           ))}
         </div>
 
-        {/* Grid */}
+        {/* Grid — shared tinted ProtocolCard, same as /peptides and the homepage rows */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-          {visible.map((t) => {
-            const multi = (t.forms?.length ?? 0) > 1;
-            const href = intakeHref(t);
-            const external = href.startsWith("http");
-            const tint = tintFor(t);
-            return (
-              <a
-                key={t.id}
-                href={href}
-                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="press group rounded-[var(--r)] bg-ivory2 border border-[var(--line-soft)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_28px_56px_-32px_rgba(20,20,20,0.4)]"
-              >
-                {/* Tinted product stage — the per-category colour that gives the grid life */}
-                <div
-                  className="relative h-[230px] lg:h-[250px] flex items-center justify-center overflow-hidden"
-                  style={{ background: tint.bg }}
-                >
-                  <span
-                    className="absolute top-3.5 left-3.5 z-10 rounded-full bg-white/70 backdrop-blur-sm px-2.5 py-1 font-mono text-[0.56rem] uppercase tracking-wider"
-                    style={{ color: tint.ink }}
-                  >
-                    {primaryLabel(t)}
-                  </span>
-                  <span className="absolute top-3.5 right-3.5 z-10 font-mono text-[0.6rem] uppercase tracking-wider text-ink-2/70">
-                    Rx
-                  </span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={productImage(t)}
-                    alt={t.name}
-                    loading="lazy"
-                    className="h-[88%] w-auto max-w-[62%] object-contain transition-transform duration-500 group-hover:scale-[1.06] drop-shadow-[0_20px_30px_-16px_rgba(34,34,34,0.5)]"
-                  />
-                </div>
-
-                <div className="p-5 flex flex-col flex-1">
-                  <h3 className="text-ink font-medium text-[1.05rem] leading-tight">
-                    {t.name}
-                  </h3>
-
-                  <div className="mt-3 flex flex-wrap items-center gap-2 text-[0.64rem]">
-                    {formsLabel(t) && (
-                      <span className="rounded-full bg-sand px-2 py-0.5 font-medium text-ink-2 ring-1 ring-[var(--line-soft)]">
-                        {formsLabel(t)}
-                      </span>
-                    )}
-                    {t.compounded && (
-                      <span className="rounded-full border border-[var(--line)] px-2 py-0.5 uppercase tracking-wider text-ink-2">
-                        {COMPOUNDED_LABEL}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="mt-auto pt-4 flex items-end justify-between">
-                    <span className="text-ink text-[1.05rem] font-medium">
-                      {t.priceMonthly !== null ? (
-                        <>
-                          {multi && <span className="muted text-[0.72rem] font-normal">from </span>}
-                          ${Number.isInteger(t.priceMonthly) ? t.priceMonthly.toLocaleString() : t.priceMonthly.toFixed(2)}
-                          <span className="muted text-[0.74rem] font-normal"> / mo</span>
-                        </>
-                      ) : (
-                        <span className="muted text-[0.85rem]">At consultation</span>
-                      )}
-                    </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink/[0.06] text-ink transition group-hover:bg-ink group-hover:text-ivory">
-                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2">
-                        <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </span>
-                  </div>
-
-                  {t.compounded && (
-                    <p className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[0.62rem] leading-snug text-ink-2/60">
-                      {COMPOUNDER_NOTE}
-                    </p>
-                  )}
-                </div>
-              </a>
-            );
-          })}
+          {visible.map((t) => (
+            <ProtocolCard key={t.id} t={t} tint={gradientFor(t)} />
+          ))}
         </div>
 
         {filtered.length > PAGE && (
@@ -256,6 +158,10 @@ export default function ProductGrid({ treatments }: { treatments: Treatment[] })
             </button>
           </div>
         )}
+
+        <p className="mt-10 text-[0.72rem] leading-relaxed text-ink-2/55 max-w-[52rem]">
+          {COMPOUNDER_NOTE}
+        </p>
       </div>
     </section>
   );

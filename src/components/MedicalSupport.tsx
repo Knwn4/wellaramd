@@ -4,6 +4,7 @@ import { Product } from "./Visuals";
 export default function MedicalSupport() {
   return (
     <section
+      id="labs"
       className="relative overflow-hidden py-14 lg:py-28"
       style={{ background: "linear-gradient(180deg, #FFFEF8 0%, #F6F4EA 100%)" }}
     >
@@ -18,13 +19,13 @@ export default function MedicalSupport() {
             </h2>
 
             <div className="mt-8 pt-6 border-t border-[var(--line)] max-w-md">
-              <p className="eyebrow text-ink-2">Physician review, 100% online</p>
+              <p className="eyebrow-s text-ink-2">Physician review, 100% online</p>
               <p className="muted text-[1rem] mt-4 leading-relaxed">
                 A licensed provider reviews your intake and labs, decides what is
                 actually appropriate for you, and keeps following your progress —
                 adjusting as your body changes.
               </p>
-              <a href="#evaluation" className="btn btn-ink mt-8">
+              <a href="#treatments" className="btn btn-ink mt-8">
                 Find your treatment
               </a>
             </div>

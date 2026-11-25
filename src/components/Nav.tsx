@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-export default function Nav() {
+/**
+ * Site nav. With `overlay`, it floats transparently over a hero (white text at
+ * the top, turning into a solid white bar once scrolled) — used on the homepage
+ * so the full-screen hero video shows behind it. Without `overlay` it is the
+ * normal sticky white bar with the announcement strip.
+ */
+export default function Nav({ overlay = false }: { overlay?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -13,26 +19,36 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Solid white bar when not an overlay, or once scrolled / menu open.
+  const solid = !overlay || scrolled || open;
+
   return (
     <>
-      {/* Announcement bar */}
-      <div className="w-full bg-sand text-ink text-center text-[0.9rem] py-2.5 px-4">
-        <span className="opacity-90">Modern metabolic and longevity care, built for women.</span>{" "}
-        <a href="#evaluation" className="font-semibold underline underline-offset-2 inline-flex items-center gap-1">
-          Begin your evaluation <span aria-hidden>→</span>
-        </a>
-      </div>
+      {/* Announcement bar — only in the normal (non-overlay) layout */}
+      {!overlay && (
+        <div className="w-full bg-sand text-ink text-center text-[0.9rem] py-2.5 px-4">
+          <span className="opacity-90">Modern metabolic and longevity care, built for women.</span>{" "}
+          <a href="#evaluation" className="font-semibold underline underline-offset-2 inline-flex items-center gap-1">
+            Begin your evaluation <span aria-hidden>→</span>
+          </a>
+        </div>
+      )}
 
       {/* Nav */}
       <header
-        className={`sticky top-0 z-50 transition-colors duration-300 ${
-          scrolled ? "bg-white/95 backdrop-blur-sm" : "bg-white"
+        className={`${overlay ? "fixed" : "sticky"} top-0 inset-x-0 z-50 transition-colors duration-300 ${
+          solid ? "bg-white/95 backdrop-blur-sm" : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-[1440px] px-5 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <a href="#top" className="logo text-[1.9rem] leading-none text-ink lowercase tracking-tight">
-              wellara<span className="uppercase text-gold">MD</span>
+            <a
+              href="#top"
+              className={`logo text-[1.9rem] leading-none lowercase tracking-tight transition-colors ${
+                solid ? "text-ink" : "text-white"
+              }`}
+            >
+              wellara<span className={`uppercase ${solid ? "text-gold" : "text-white"}`}>MD</span>
             </a>
 
             <div className="flex items-center gap-3">
@@ -40,19 +56,25 @@ export default function Nav() {
                 href="https://app.mydose.ai/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-light btn-sm border border-black/10"
+                className={
+                  solid
+                    ? "btn btn-light btn-sm border border-black/10"
+                    : "btn btn-sm bg-white/15 text-white ring-1 ring-white/35 backdrop-blur hover:bg-white/25"
+                }
               >
                 Log in
               </a>
               <button
                 aria-label="Menu"
                 onClick={() => setOpen((v) => !v)}
-                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors"
+                className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${
+                  solid ? "hover:bg-black/5" : "hover:bg-white/15"
+                }`}
               >
                 <div className="flex flex-col gap-[5px]">
-                  <span className={`block w-5 h-[1.5px] bg-ink transition-all ${open ? "translate-y-[6.5px] rotate-45" : ""}`} />
-                  <span className={`block w-5 h-[1.5px] bg-ink transition-all ${open ? "opacity-0" : ""}`} />
-                  <span className={`block w-5 h-[1.5px] bg-ink transition-all ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
+                  <span className={`block w-5 h-[1.5px] transition-all ${solid ? "bg-ink" : "bg-white"} ${open ? "translate-y-[6.5px] rotate-45" : ""}`} />
+                  <span className={`block w-5 h-[1.5px] transition-all ${solid ? "bg-ink" : "bg-white"} ${open ? "opacity-0" : ""}`} />
+                  <span className={`block w-5 h-[1.5px] transition-all ${solid ? "bg-ink" : "bg-white"} ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
                 </div>
               </button>
             </div>
@@ -61,8 +83,8 @@ export default function Nav() {
 
         {/* Slide-down menu panel */}
         <div
-          className={`overflow-hidden transition-all duration-500 border-t border-black/5 ${
-            open ? "max-h-[520px]" : "max-h-0"
+          className={`overflow-hidden transition-all duration-500 ${
+            open ? "bg-white/95 backdrop-blur-sm border-t border-black/5 max-h-[520px]" : "max-h-0"
           }`}
         >
           <div className="mx-auto max-w-[1440px] px-5 lg:px-8 py-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -116,7 +116,7 @@ export default function GLHero() {
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <a href="#evaluation" className="btn btn-ink">Find your treatment</a>
+          <a href="#treatments" className="btn btn-ink">Find your treatment</a>
           <a href="#treatments" className="btn btn-outline-dark">Browse treatments</a>
         </div>
 

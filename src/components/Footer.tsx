@@ -29,8 +29,8 @@ const COLUMNS: { title: string; links: { label: string; href: string; external?:
 
 export default function Footer() {
   return (
-    <footer className="bg-dark text-white overflow-hidden">
-      <div className="mx-auto max-w-[1440px] px-5 lg:px-8 pt-14 lg:pt-20 pb-8">
+    <footer className="relative bg-dark text-white overflow-hidden">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-5 lg:px-8 pt-14 lg:pt-20 pb-8">
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-10">
           {COLUMNS.map((c) => (
             <div key={c.title}>
@@ -124,9 +124,9 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* wordmark watermark */}
-      <div className="select-none pointer-events-none leading-[0.8] -mb-[1.5vw] overflow-hidden">
-        <span className="logo block text-center lowercase text-white/[0.06] text-[16vw]">wellara</span>
+      {/* wordmark watermark — absolute so it sits behind the content and adds no height */}
+      <div className="absolute inset-x-0 -bottom-[2.5vw] z-0 select-none pointer-events-none leading-[0.8]">
+        <span className="logo block text-center lowercase text-white/[0.07] text-[19vw]">wellara</span>
       </div>
     </footer>
   );

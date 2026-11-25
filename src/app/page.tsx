@@ -1,6 +1,5 @@
 import Nav from "@/components/Nav";
-import TrustTicker from "@/components/TrustTicker";
-import GLHero from "@/components/GLHero";
+import VideoHero from "@/components/VideoHero";
 import ValueProps from "@/components/ValueProps";
 import CategorySections from "@/components/CategorySections";
 import ProductCatalog from "@/components/ProductCatalog";
@@ -14,10 +13,9 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <TrustTicker />
-      <Nav />
+      <Nav overlay />
       <main>
-        <GLHero />
+        <VideoHero />
         <ValueProps />
         <CategorySections />
         <ProductCatalog />
